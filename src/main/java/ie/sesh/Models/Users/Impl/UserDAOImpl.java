@@ -2,60 +2,89 @@ package ie.sesh.Models.Users.Impl;
 
 import ie.sesh.Models.Users.User;
 import ie.sesh.Models.Users.UserDAO;
-import ie.sesh.Database.SQLConstants;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Component;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.jdbc.core.RowMapper;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.apache.log4j.Logger;
 
-import static ie.sesh.Database.SQLConstants.INSERT_USER;
+import static ie.sesh.Database.SQLConstants.*;
 
-@PropertySource("classpath:/sql-query.properties")
-@Repository
+@Component
 public class UserDAOImpl implements UserDAO{
+
+    private static final Logger log = Logger.getLogger(UserDAOImpl.class);
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @Override
     public User getUser(int id) {
-        System.out.println("Hey LOOK:   ");
-        return new User();
+        log.info("Getting user");
+        return (User)jdbcTemplate.queryForObject(GET_USER_BY_ID, new Object[] {id}, new UserMapper());
     }
 
-    @Override
     public void updateUser(User user) {
-
+        log.info("Updating user");
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(UPDATE_USER, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, user.getName());
+            ps.setInt(2, user.getAge());
+            ps.setDate(3, user.getDob());
+            ps.setInt(4, user.getLocation());
+            ps.setString(5, user.getFavourite_drink());
+            ps.setDouble(6, user.getRating());
+            ps.setInt(7,user.getId());
+            return ps;
+        }, holder);
     }
 
-    @Override
     public void createUser(User user) {
+        log.info("Inserting user");
         KeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(INSERT_USER, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getName());
-            ps.setInt(2,user.getAge());
-            ps.setDate(3,user.getDob());
-            ps.setString();
-            int date float string int
+            ps.setInt(2, user.getAge());
+            ps.setDate(3, user.getDob());
+            ps.setInt(4, user.getLocation());
+            ps.setString(5, user.getFavourite_drink());
+            ps.setDouble(6, user.getRating());
             return ps;
         }, holder);
-
-        int newUserId = holder.getKey().intValue();
-        user.setId(newUserId);
     }
 
-    @Override
     public void deleteUser(int id) {
+        log.info("Deleting user");
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(DELETE_USER, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            return ps;
+        }, holder);
+    }
+}
 
+class UserMapper implements RowMapper {
+
+    @Override
+    public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+        User user = new User();
+        user.setId(rs.getInt("id"));
+        user.setName(rs.getString("name"));
+        user.setAge(rs.getInt("age"));
+        user.setDob(rs.getDate("dob"));
+        user.setFavourite_drink(rs.getString("favourite_drink"));
+        user.setLocation(rs.getInt("location"));
+        user.setRating(rs.getFloat("rating"));
+        return user;
     }
 }

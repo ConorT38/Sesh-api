@@ -1,9 +1,10 @@
 package ie.sesh.Models.Users;
 
-import ie.sesh.Models.Locations.Location;
+import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.sql.Date;
 
+@Component
 public class User {
 
     private int id;
@@ -11,13 +12,13 @@ public class User {
     private int age;
     private Date dob;
 
-    private Location location;
+    private int location;
     private String favourite_drink;
-    private double rating;
+    private float rating;
 
     public User(){}
 
-    public User(int id, String name, int age, Date dob, Location location, String favourite_drink, double rating){
+    public User(int id, String name, int age, Date dob, int location, String favourite_drink, float rating){
         this.id = id;
         this.name = name;
         this.age = age;
@@ -59,11 +60,11 @@ public class User {
         this.dob = dob;
     }
 
-    public Location getLocation() {
+    public int getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(int location) {
         this.location = location;
     }
 
@@ -75,11 +76,11 @@ public class User {
         this.favourite_drink = favourite_drink;
     }
 
-    public double getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 }

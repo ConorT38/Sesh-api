@@ -2,10 +2,10 @@ package ie.sesh.Database;
 
 public class SQLConstants {
 
-    public static final String INSERT_USER = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String UPDATE_USER = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String GET_USER_BY_ID = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String DELETE_USER = "INSERT INTO USERS(name,address,email) values(?,?,?)";
+    public static final String INSERT_USER = " INSERT INTO users(name,age,dob,location,favourite_drink,rating) values(?,?,?,?,?,?);";
+    public static final String UPDATE_USER = "UPDATE users SET name=?,age=?,dob=?,location=?,favourite_drink=?,rating=? WHERE id=?";
+    public static final String GET_USER_BY_ID = "SELECT * FROM users WHERE id = ?";
+    public static final String DELETE_USER = "DELETE FROM users WHERE id=?";
 
     public static final String INSERT_LOCATION = "INSERT INTO USERS(name,address,email) values(?,?,?)";
     public static final String UPDATE_LOCATION = "INSERT INTO USERS(name,address,email) values(?,?,?)";
