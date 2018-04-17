@@ -23,7 +23,7 @@ public class StatusService {
     }
 
     public void updateStatus(Status status){
-        statusDAO.updateUser(status);
+        statusDAO.updateStatus(status);
     }
 
     public void createStatus(Status status){

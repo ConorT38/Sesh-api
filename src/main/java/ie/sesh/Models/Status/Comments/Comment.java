@@ -1,6 +1,6 @@
 package ie.sesh.Models.Status.Comments;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Comment {
 

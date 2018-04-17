@@ -8,14 +8,14 @@ public class Location{
     private String website;
     private String geoLocation;
 
-    private double rating;
+    private float rating;
     private int visitors;
     private boolean has_promotion;
 
 
     public Location(){}
 
-    public Location(int id, String name, String address, String website, String geoLocation, double rating, int visitors, boolean has_promotion) {
+    public Location(int id, String name, String address, String website, String geoLocation, float rating, int visitors, boolean has_promotion) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -66,11 +66,11 @@ public class Location{
         this.geoLocation = geoLocation;
     }
 
-    public double getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

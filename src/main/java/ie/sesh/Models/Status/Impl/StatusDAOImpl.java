@@ -2,8 +2,7 @@ package ie.sesh.Models.Status.Impl;
 
 import ie.sesh.Models.Status.Status;
 import ie.sesh.Models.Status.StatusDAO;
-import ie.sesh.Models.Users.Impl.UserDAOImpl;
-import ie.sesh.Models.Users.User;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,7 +10,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -39,13 +37,14 @@ public class StatusDAOImpl implements StatusDAO{
         KeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(UPDATE_STATUS, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, status.getName());
-            ps.setInt(2, status.getAge());
-            ps.setDate(3, status.getDob());
-            ps.setInt(4, status.getLocation());
-            ps.setString(5, status.getFavourite_drink());
-            ps.setDouble(6, status.getRating());
-            ps.setInt(7,status.getId());
+            ps.setInt(1, status.getUser_id());
+            ps.setString(2, status.getMessage());
+            ps.setInt(3, status.getLocation());
+            ps.setInt(4, status.getLikes());
+            ps.setDate(5, status.getDate());
+            ps.setString(6, status.getGoing());
+            ps.setString(7, status.getMaybe());
+            ps.setString(8, status.getNot_going());
             return ps;
         }, holder);
     }
@@ -55,14 +54,14 @@ public class StatusDAOImpl implements StatusDAO{
         KeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(INSERT_STATUS, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, status.getUser_id());
-            ps.setInt(2, status.getMessage());
-            ps.setDate(3, status.getLocation());
+            ps.setInt(1, status.getUser_id());
+            ps.setString(2, status.getMessage());
+            ps.setInt(3, status.getLocation());
             ps.setInt(4, status.getLikes());
-            ps.setString(5, status.getDate());
-            ps.setInt(6, status.getGoing());
-            ps.setInt(4, status.getMaybe());
-            ps.setInt(4, status.getNot_going());
+            ps.setDate(5, status.getDate());
+            ps.setString(6, status.getGoing());
+            ps.setString(7, status.getMaybe());
+            ps.setString(8, status.getNot_going());
             return ps;
         }, holder);
     }
@@ -83,13 +82,14 @@ class StatusMapper implements RowMapper {
     @Override
     public Status mapRow(ResultSet rs, int rowNum) throws SQLException {
         Status status = new Status();
-        status.setId(rs.getInt("id"));
-        status.setName(rs.getString("name"));
-        status.setAge(rs.getInt("age"));
-        status.setDob(rs.getDate("dob"));
-        status.setFavourite_drink(rs.getString("favourite_drink"));
+        status.setUser_id(rs.getInt("id"));
+        status.setMessage(rs.getString("message"));
         status.setLocation(rs.getInt("location"));
-        status.setRating(rs.getFloat("rating"));
-        return user;
+        status.setLikes(rs.getInt("likes"));
+        status.setDate(rs.getDate("uploaded"));
+        status.setGoing(rs.getString("going"));
+        status.setMaybe(rs.getString("maybe"));
+        status.setNot_going(rs.getString("not_going"));
+        return status;
     }
 }

@@ -1,6 +1,7 @@
 ie\sesh\Services\Users\UserService.class
 ie\sesh\Models\Users\UserDAO.class
 ie\sesh\Controllers\Account\RegisterController.class
+ie\sesh\Models\Status\Impl\StatusMapper.class
 ie\sesh\Utils\UserUtils.class
 ie\sesh\Models\Status\Comments\Comment.class
 ie\sesh\Models\Status\Status.class
@@ -17,12 +18,18 @@ ie\sesh\Models\Users\Impl\UserMapper.class
 ie\sesh\Models\Status\Impl\StatusDAOImpl.class
 ie\sesh\Exception\SeshException.class
 ie\sesh\Models\Users\Impl\UserDAOImpl.class
+ie\sesh\Utils\CommonUtils.class
+ie\sesh\Utils\StatusUtils.class
 ie\sesh\Controllers\Users\Reviews\ReviewController.class
 ie\sesh\Models\Users\User.class
+ie\sesh\Services\Status\Comments\CommentService.class
 ie\sesh\Application.class
 ie\sesh\Controllers\Status\StatusController.class
+ie\sesh\Models\Status\Comments\Impl\CommentMapper.class
 ie\sesh\Controllers\Account\LoginController.class
 ie\sesh\Controllers\Status\Comments\CommentsController.class
 ie\sesh\Controllers\Locations\LocationController.class
+ie\sesh\Models\Status\Comments\CommentDAO.class
+ie\sesh\Models\Status\Comments\Impl\CommentDAOImpl.class
 ie\sesh\Services\Status\StatusService.class
 ie\sesh\Models\Status\StatusDAO.class

@@ -1,6 +1,5 @@
 package ie.sesh.Models.Status;
 
-import ie.sesh.Models.Users.User;
 
 public interface StatusDAO {
 

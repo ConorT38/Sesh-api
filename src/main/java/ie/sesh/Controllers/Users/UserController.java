@@ -3,6 +3,7 @@ package ie.sesh.Controllers.Users;
 import com.google.gson.Gson;
 import ie.sesh.Models.Users.User;
 import ie.sesh.Services.Users.UserService;
+import ie.sesh.Utils.CommonUtils;
 import ie.sesh.Utils.UserUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,7 @@ public class UserController {
     @PostMapping("/update/user")
     @ResponseBody
     public boolean updateUser(@RequestBody String user_data) {
-        Gson gson = UserUtils.convertDate(user_data);
+        Gson gson = CommonUtils.convertDate(user_data);
         User user = gson.fromJson(user_data, User.class);
         userService.updateUser(user);
         return true;
@@ -31,7 +32,7 @@ public class UserController {
     @PostMapping("/create/user")
     @ResponseBody
     public boolean createUser(@RequestBody String user_data) {
-        Gson gson = UserUtils.convertDate(user_data);
+        Gson gson = CommonUtils.convertDate(user_data);
         User user = gson.fromJson(user_data, User.class);
         userService.createUser(user);
         return true;

@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 
 import ie.sesh.Models.Status.Status;
 import ie.sesh.Services.Status.StatusService;
-import ie.sesh.Utils.UserUtils;
+import ie.sesh.Utils.CommonUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +24,7 @@ public class StatusController {
     @PostMapping("/update/status")
     @ResponseBody
     public boolean updateStatus(@RequestBody String status_data) {
-        Gson gson = StatusUtils.convertDate(status_data);
+        Gson gson = CommonUtils.convertDate(status_data);
         Status status = gson.fromJson(status_data, Status.class);
         statusService.updateStatus(status);
         return true;
@@ -32,10 +32,10 @@ public class StatusController {
 
     @PostMapping("/create/status")
     @ResponseBody
-    public boolean creatStatus(@RequestBody String status_data) {
-        Gson gson = UserUtils.convertDate(status_data);
+    public boolean createStatus(@RequestBody String status_data) {
+        Gson gson = CommonUtils.convertDate(status_data);
         Status status = gson.fromJson(status_data, Status.class);
-        statusService.createStatus(user);
+        statusService.createStatus(status);
         return true;
     }
 

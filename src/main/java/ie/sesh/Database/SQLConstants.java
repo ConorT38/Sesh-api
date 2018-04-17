@@ -7,28 +7,28 @@ public class SQLConstants {
     public static final String GET_USER_BY_ID = "SELECT * FROM users WHERE id = ?";
     public static final String DELETE_USER = "DELETE FROM users WHERE id=?";
 
-    public static final String INSERT_LOCATION = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String UPDATE_LOCATION = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String GET_LOCATION_BY_ID = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String DELETE_LOCATION = "INSERT INTO USERS(name,address,email) values(?,?,?)";
+    public static final String INSERT_LOCATION = "INSERT INTO location(name,address,website,geolocation,has_promotion,rating,visitors) values(?,?,?,?,?,?,?)";
+    public static final String UPDATE_LOCATION = "UPDATE location SET name=?,address=?,website=?,geolocation=?,has_promotion=?,rating=?,visitors=? WHERE id=?";
+    public static final String GET_LOCATION_BY_ID = "SELECT * FROM location WHERE id = ?";
+    public static final String DELETE_LOCATION = "DELETE FROM location WHERE id=?";
 
-    public static final String INSERT_STATUS = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String UPDATE_STATUS = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String GET_STATUS_BY_ID = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String DELETE_STATUS = "INSERT INTO USERS(name,address,email) values(?,?,?)";
+    public static final String INSERT_STATUS = "INSERT INTO status(user_id,message,location,likes,uploaded,going,maybe,not_going) values(?,?,?,?,?,?,?,?)";
+    public static final String UPDATE_STATUS = "UPDATE status SET user_id=?,message=?,location=?,likes=?,uploaded=?,going=?,maybe=?,not_going=? WHERE id=?";
+    public static final String GET_STATUS_BY_ID = "SELECT * FROM status WHERE id = ?";
+    public static final String DELETE_STATUS = "DELETE FROM status WHERE id=?";
 
-    public static final String INSERT_STATUS_COMMENT = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String UPDATE_STATUS_COMMENT = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String GET_STATUS_COMMENT_BY_ID = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String DELETE_STATUS_COMMENT = "INSERT INTO USERS(name,address,email) values(?,?,?)";
+    public static final String INSERT_STATUS_COMMENT = "INSERT INTO status_comment(status_id,user_id,message,likes,uploaded) values(?,?,?,?,?)";
+    public static final String UPDATE_STATUS_COMMENT = "UPDATE status_comment SET status_id,user_id=?,message=?,likes=?,uploaded=? WHERE id=?";
+    public static final String GET_STATUS_COMMENT_BY_ID = "SELECT * FROM status_comment WHERE id = ?";
+    public static final String DELETE_STATUS_COMMENT = "DELETE FROM status_comment WHERE id=?";
 
     public static final String INSERT_LOCATION_REVIEW = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String UPDATE_LOCATION_REVIEW = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String GET_LOCATION_REVIEW_BY_ID = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String DELETE_LOCATION_REVIEW = "INSERT INTO USERS(name,address,email) values(?,?,?)";
+    public static final String UPDATE_LOCATION_REVIEW = "UPDATE users SET name=?,age=?,dob=?,location=?,favourite_drink=?,rating=? WHERE id=?";
+    public static final String GET_LOCATION_REVIEW_BY_ID = "SELECT * FROM users WHERE id = ?";
+    public static final String DELETE_LOCATION_REVIEW = "DELETE FROM users WHERE id=?";
 
     public static final String INSERT_USER_REVIEW = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String UPDATE_USER_REVIEW = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String GET_LUSER_REVIEW_BY_ID = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String DELETE_USER_REVIEW = "INSERT INTO USERS(name,address,email) values(?,?,?)";
+    public static final String UPDATE_USER_REVIEW = "UPDATE users SET name=?,age=?,dob=?,location=?,favourite_drink=?,rating=? WHERE id=?";
+    public static final String GET_LUSER_REVIEW_BY_ID = "SELECT * FROM users WHERE id = ?";
+    public static final String DELETE_USER_REVIEW = "DELETE FROM users WHERE id=?";
 }

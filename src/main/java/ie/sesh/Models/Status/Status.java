@@ -1,8 +1,6 @@
 package ie.sesh.Models.Status;
 
-import ie.sesh.Models.Locations.Location;
-
-import java.util.Date;
+import java.sql.Date;
 
 public class Status {
 
@@ -10,19 +8,19 @@ public class Status {
     private int user_id;
 
     private String message;
-    private Location location;
+    private int location;
     private int likes;
 
     private Date date;
 
     // uses User ID
-    private int[] going;
-    private int[] maybe;
-    private int[] not_going;
+    private String going;
+    private String maybe;
+    private String not_going;
 
     public Status() {}
 
-    public Status(int id, int user_id, String message, Location location, int likes, Date date, int[] going, int[] maybe, int[] not_going) {
+    public Status(int id, int user_id, String message, int location, int likes, Date date, String going,String maybe, String not_going) {
         this.id = id;
         this.user_id = user_id;
         this.message = message;
@@ -58,11 +56,11 @@ public class Status {
         this.message = message;
     }
 
-    public Location getLocation() {
+    public int getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(int location) {
         this.location = location;
     }
 
@@ -82,27 +80,27 @@ public class Status {
         this.date = date;
     }
 
-    public int[] getGoing() {
+    public String getGoing() {
         return going;
     }
 
-    public void setGoing(int[] going) {
+    public void setGoing(String going) {
         this.going = going;
     }
 
-    public int[] getMaybe() {
+    public String getMaybe() {
         return maybe;
     }
 
-    public void setMaybe(int[] maybe) {
+    public void setMaybe(String maybe) {
         this.maybe = maybe;
     }
 
-    public int[] getNot_going() {
+    public String getNot_going() {
         return not_going;
     }
 
-    public void setNot_going(int[] not_going) {
+    public void setNot_going(String not_going) {
         this.not_going = not_going;
     }
 }
