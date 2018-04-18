@@ -32,7 +32,7 @@ CREATE TABLE `location` (
   `rating` float DEFAULT NULL,
   `visitors` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
+INSERT INTO `location` VALUES (1,'Sesh pub','sesh st, seshland','https://sesh.ie',NULL,0,2.1,21);
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +64,7 @@ CREATE TABLE `location_review` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `location_review_ibfk_1` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`),
   CONSTRAINT `location_review_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +73,7 @@ CREATE TABLE `location_review` (
 
 LOCK TABLES `location_review` WRITE;
 /*!40000 ALTER TABLE `location_review` DISABLE KEYS */;
+INSERT INTO `location_review` VALUES (1,1,4,'This place is shit craic.',2.1,'2013-02-10 00:00:00');
 /*!40000 ALTER TABLE `location_review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +129,7 @@ CREATE TABLE `status_comment` (
   KEY `status_id` (`status_id`),
   CONSTRAINT `status_comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `status_comment_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,9 +152,9 @@ DROP TABLE IF EXISTS `user_review`;
 CREATE TABLE `user_review` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `location_id` bigint(20) DEFAULT NULL,
-  `reviewed_user_id` bigint(20) DEFAULT NULL,
+  `reviewer_id` bigint(20) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
-  `review` text,
+  `message` text,
   `rating` float DEFAULT NULL,
   `uploaded` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -160,7 +162,7 @@ CREATE TABLE `user_review` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `user_review_ibfk_1` FOREIGN KEY (`location_id`) REFERENCES `location` (`id`),
   CONSTRAINT `user_review_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,6 +171,7 @@ CREATE TABLE `user_review` (
 
 LOCK TABLES `user_review` WRITE;
 /*!40000 ALTER TABLE `user_review` DISABLE KEYS */;
+INSERT INTO `user_review` VALUES (1,1,4,5,'This lad is shit craic.',2.1,'2013-02-10 00:00:00');
 /*!40000 ALTER TABLE `user_review` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,4 +213,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-17 17:33:41
+-- Dump completed on 2018-04-18 12:32:08

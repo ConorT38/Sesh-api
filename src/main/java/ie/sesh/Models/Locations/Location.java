@@ -1,5 +1,9 @@
 package ie.sesh.Models.Locations;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.stereotype.Component;
+
+@Component
 public class Location{
 
     private int id;

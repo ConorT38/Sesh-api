@@ -1,21 +1,24 @@
 package ie.sesh.Models.Locations.Reviews;
 
-import java.util.Date;
+import org.springframework.stereotype.Component;
 
-public class Review {
+import java.sql.Date;
+
+@Component
+public class LocationReview {
 
     private int id;
     private int location_id;
     private int user_id;
 
     private String review;
-    private double rating;
+    private float rating;
     private Date date;
 
-    public Review() {
+    public LocationReview() {
     }
 
-    public Review(int id, int location_id, int user_id, String review, double rating, Date date) {
+    public LocationReview(int id, int location_id, int user_id, String review, float rating, Date date) {
         this.id = id;
         this.location_id = location_id;
         this.user_id = user_id;
@@ -56,11 +59,11 @@ public class Review {
         this.review = review;
     }
 
-    public double getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 

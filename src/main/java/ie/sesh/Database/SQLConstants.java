@@ -22,13 +22,13 @@ public class SQLConstants {
     public static final String GET_STATUS_COMMENT_BY_ID = "SELECT * FROM status_comment WHERE id = ?";
     public static final String DELETE_STATUS_COMMENT = "DELETE FROM status_comment WHERE id=?";
 
-    public static final String INSERT_LOCATION_REVIEW = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String UPDATE_LOCATION_REVIEW = "UPDATE users SET name=?,age=?,dob=?,location=?,favourite_drink=?,rating=? WHERE id=?";
-    public static final String GET_LOCATION_REVIEW_BY_ID = "SELECT * FROM users WHERE id = ?";
-    public static final String DELETE_LOCATION_REVIEW = "DELETE FROM users WHERE id=?";
+    public static final String INSERT_LOCATION_REVIEW = "INSERT INTO location_review(location_id,user_id,review,rating,uploaded) values(?,?,?,?,?)";
+    public static final String UPDATE_LOCATION_REVIEW = "UPDATE location_review SET location_id=?,user_id=?,review=?,rating=?,uploaded=? WHERE id=?";
+    public static final String GET_LOCATION_REVIEW_BY_ID = "SELECT * FROM location_review WHERE id = ?";
+    public static final String DELETE_LOCATION_REVIEW = "DELETE FROM location_review WHERE id=?";
 
-    public static final String INSERT_USER_REVIEW = "INSERT INTO USERS(name,address,email) values(?,?,?)";
-    public static final String UPDATE_USER_REVIEW = "UPDATE users SET name=?,age=?,dob=?,location=?,favourite_drink=?,rating=? WHERE id=?";
-    public static final String GET_LUSER_REVIEW_BY_ID = "SELECT * FROM users WHERE id = ?";
-    public static final String DELETE_USER_REVIEW = "DELETE FROM users WHERE id=?";
+    public static final String INSERT_USER_REVIEW = "INSERT INTO user_review(user_id,reviewer_id,location_id,review,uploaded,rating) values(?,?,?,?,?,?)";
+    public static final String UPDATE_USER_REVIEW = "UPDATE user_review SET user_id=?,reviewer_id=?,location_id=?,review=?,uploaded=?,rating=?, WHERE id=?";
+    public static final String GET_USER_REVIEW_BY_ID = "SELECT * FROM user_review WHERE id = ?";
+    public static final String DELETE_USER_REVIEW = "DELETE FROM user_review WHERE id=?";
 }

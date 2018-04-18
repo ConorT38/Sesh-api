@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,6 +21,7 @@ import static ie.sesh.Database.SQLConstants.*;
 import static ie.sesh.Database.SQLConstants.INSERT_LOCATION;
 import static ie.sesh.Database.SQLConstants.UPDATE_LOCATION;
 
+@Component
 public class LocationDAOImpl implements LocationDAO {
 
     private static final Logger log = Logger.getLogger(LocationDAOImpl.class);
@@ -57,7 +59,7 @@ public class LocationDAOImpl implements LocationDAO {
             ps.setString(2, location.getAddress());
             ps.setString(3, location.getWebsite());
             ps.setString(4, location.getGeoLocation());
-            ps.setBoolean(8, location.isHas_promotion());
+            ps.setBoolean(5, location.isHas_promotion());
             ps.setFloat(6, location.getRating());
             ps.setInt(7, location.getVisitors());
             return ps;

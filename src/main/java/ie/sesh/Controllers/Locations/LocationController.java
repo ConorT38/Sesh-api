@@ -15,13 +15,13 @@ public class LocationController {
     @Autowired
     LocationService locationService;
 
-    @PostMapping("/get/user")
+    @PostMapping("/get/location")
     @ResponseBody
     public Location getLocation(@RequestParam(name="id") int id) {
         return locationService.getLocation(id);
     }
 
-    @PostMapping("/update/user")
+    @PostMapping("/update/location")
     @ResponseBody
     public boolean updateLocation(@RequestBody String location_data) {
         Gson gson = CommonUtils.convertDate(location_data);
@@ -30,7 +30,7 @@ public class LocationController {
         return true;
     }
 
-    @PostMapping("/create/user")
+    @PostMapping("/create/location")
     @ResponseBody
     public boolean createLocation(@RequestBody String location_data) {
         Gson gson = CommonUtils.convertDate(location_data);
@@ -39,7 +39,7 @@ public class LocationController {
         return true;
     }
 
-    @PostMapping("/delete/user")
+    @PostMapping("/delete/location")
     @ResponseBody
     public boolean deleteLocation(@RequestParam(name="id") int id) {
         locationService.deleteLocation(id);
