@@ -129,7 +129,7 @@ CREATE TABLE `status_comment` (
   KEY `status_id` (`status_id`),
   CONSTRAINT `status_comment_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `status_comment_ibfk_2` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,8 +190,13 @@ CREATE TABLE `users` (
   `location` int(11) DEFAULT NULL,
   `favourite_drink` varchar(200) DEFAULT NULL,
   `rating` float DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `username` varchar(200) DEFAULT NULL,
+  `password` varchar(200) DEFAULT NULL,
+  `gender` varchar(200) DEFAULT NULL,
+  `local_spot` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +205,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2),(3,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2),(4,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2),(5,'James Mackler dudette',21,'2013-02-10 00:00:00',0,NULL,0),(6,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2);
+INSERT INTO `users` VALUES (2,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(3,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(4,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(5,'James Mackler dudette',21,'2013-02-10 00:00:00',0,NULL,0,NULL,NULL,NULL,NULL,NULL),(6,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(7,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -213,4 +218,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-18 12:32:08
+-- Dump completed on 2018-04-23 17:05:01

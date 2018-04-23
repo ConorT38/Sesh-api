@@ -16,9 +16,15 @@ public class User {
     private String favourite_drink;
     private float rating;
 
+    private String gender;
+    private int local_spot;
+    private String username;
+    private String email;
+    private String password;
+
     public User(){}
 
-    public User(int id, String name, int age, Date dob, int location, String favourite_drink, float rating){
+    public User(int id, String name, int age, Date dob, int location, String favourite_drink, float rating, String gender, int local_spot, String username, String email, String password) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -26,6 +32,11 @@ public class User {
         this.location = location;
         this.favourite_drink = favourite_drink;
         this.rating = rating;
+        this.gender = gender;
+        this.local_spot = local_spot;
+        this.username = username;
+        this.email = email;
+        this.password = password;
     }
 
     public int getId() {

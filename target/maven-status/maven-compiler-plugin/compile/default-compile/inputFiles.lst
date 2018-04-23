@@ -3,6 +3,7 @@ C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Users\UserC
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Services\Status\StatusService.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Services\Status\Comments\CommentService.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Utils\StatusUtils.java
+C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Account\LoginDAO.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Status\Comments\CommentDAO.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Status\Status.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Users\Reviews\Review.java
@@ -11,7 +12,6 @@ C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Status\Stat
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Locations\Reviews\Impl\LocationReviewDAOImpl.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Locations\Reviews\LocationReviewController.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Locations\LocationDAO.java
-C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Account\Authentication.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Services\Users\Reviews\UserReviewService.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Users\Reviews\ReviewController.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Status\Comments\Comment.java
@@ -20,13 +20,17 @@ C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Users\Reviews\Im
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Account\LoginController.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Locations\LocationController.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Locations\Reviews\LocationReview.java
+C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Utils\Authentication.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Utils\CommonUtils.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Locations\Impl\LocationDAOImpl.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Users\User.java
+C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Account\Impl\LoginDAOImpl.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Users\Reviews\ReviewDAO.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Services\Locations\Reviews\LocationReviewsService.java
+C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Account\Impl\RegisterDAOImpl.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Status\StatusDAO.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Users\UserDAO.java
+C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Account\RegisterDAO.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Status\Comments\Impl\CommentDAOImpl.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Utils\UserUtils.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Application.java

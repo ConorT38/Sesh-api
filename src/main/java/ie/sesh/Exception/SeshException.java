@@ -1,4 +1,4 @@
 package ie.sesh.Exception;
 
-public class SeshException {
+public class SeshException extends Exception {
 }
