@@ -31,4 +31,11 @@ public class SQLConstants {
     public static final String UPDATE_USER_REVIEW = "UPDATE user_review SET user_id=?,reviewer_id=?,location_id=?,review=?,uploaded=?,rating=?, WHERE id=?";
     public static final String GET_USER_REVIEW_BY_ID = "SELECT * FROM user_review WHERE id = ?";
     public static final String DELETE_USER_REVIEW = "DELETE FROM user_review WHERE id=?";
+
+    public static final String LOGIN_ATTEMPT = "SELECT COUNT(*) FROM users WHERE username = ? AND password = ?";
+    public static final String LOGIN_SUCCESS = "SELECT id FROM users WHERE username = ? AND password = ?";
+    public static final String GET_LOGIN_TOKEN_ATTEMPT = "SELECT COUNT(*) FROM logged_in WHERE token = ?";
+    public static final String GET_LOGIN_TOKEN = "SELECT user_id FROM logged_in WHERE token = ?";
+    public static final String LOG_LOGIN_SUCCESS_FIRST = "INSERT INTO logged_in(token,user_id,loggedin) VALUES(?,?,1)";
+    public static final String LOG_LOGOUT = "UPDATE logged_in(token,user_id,loggedin) SET token='',loggedin=0 WHERE user_id=?";
 }

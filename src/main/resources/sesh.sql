@@ -78,6 +78,30 @@ INSERT INTO `location_review` VALUES (1,1,4,'This place is shit craic.',2.1,'201
 UNLOCK TABLES;
 
 --
+-- Table structure for table `logged_in`
+--
+
+DROP TABLE IF EXISTS `logged_in`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `logged_in` (
+  `id` bigint(20) DEFAULT NULL,
+  `token` varchar(200) DEFAULT NULL,
+  `user_id` bigint(20) DEFAULT NULL,
+  `loggedin` tinyint(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `logged_in`
+--
+
+LOCK TABLES `logged_in` WRITE;
+/*!40000 ALTER TABLE `logged_in` DISABLE KEYS */;
+/*!40000 ALTER TABLE `logged_in` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `status`
 --
 
@@ -218,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-23 17:05:01
+-- Dump completed on 2018-04-24 17:28:58
