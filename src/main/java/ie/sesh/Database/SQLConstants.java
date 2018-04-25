@@ -38,4 +38,6 @@ public class SQLConstants {
     public static final String GET_LOGIN_TOKEN = "SELECT user_id FROM logged_in WHERE token = ?";
     public static final String LOG_LOGIN_SUCCESS_FIRST = "INSERT INTO logged_in(token,user_id,loggedin) VALUES(?,?,1)";
     public static final String LOG_LOGOUT = "UPDATE logged_in(token,user_id,loggedin) SET token='',loggedin=0 WHERE user_id=?";
+
+    public static final String REGISTER_USER = " INSERT INTO users(name,email,password,username) values(?,?,?,?);";
 }

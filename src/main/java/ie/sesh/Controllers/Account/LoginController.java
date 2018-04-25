@@ -19,8 +19,11 @@ public class LoginController {
     public String login(@RequestBody String login_data) throws Exception {
 
         final JSONObject obj = new JSONObject(login_data);
-        String username = Authentication.encrypt(obj.getJSONArray("username").get(0).toString());
-        String password = Authentication.encrypt(obj.getJSONArray("password").get(0).toString());
+        //String username = Authentication.encrypt(obj.getJSONArray("username").get(0).toString());
+        //String password = Authentication.encrypt(obj.getJSONArray("password").get(0).toString());
+
+        String username = obj.getJSONArray("username").get(0).toString();
+        String password = obj.getJSONArray("password").get(0).toString();
 
         System.out.println("USERNAME: "+username+"  PASSWORD:  "+password);
         Object result = loginDAO.login(username,password);
@@ -34,7 +37,7 @@ public class LoginController {
     @PostMapping("/check/login")
     @ResponseBody
     public boolean checkLogin(@RequestBody String cookie_data) throws Exception {
-
+        System.out.println(cookie_data);
         final JSONObject obj = new JSONObject(cookie_data);
         String cookie = obj.getJSONArray("sesh").get(0).toString();
         if(loginDAO.checkLogged(cookie_data)){

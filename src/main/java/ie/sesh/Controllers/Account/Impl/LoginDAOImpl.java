@@ -4,6 +4,7 @@ import ie.sesh.Controllers.Account.LoginDAO;
 import ie.sesh.Utils.Authentication;
 
 import org.apache.log4j.Logger;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.Base64;
 import java.util.UUID;
 
 import static ie.sesh.Database.SQLConstants.*;
@@ -41,7 +43,7 @@ public class LoginDAOImpl implements LoginDAO {
                 ps.setInt(2, id);
                 return ps;
             }, holder);
-            return Authentication.encrypt(uuid);
+            return uuid;
         }
         return false;
     }
@@ -49,8 +51,12 @@ public class LoginDAOImpl implements LoginDAO {
     @Override
     public boolean checkLogged(String cookie) throws Exception {
        // cookie = Authentication.decrypt(cookie);
+        final JSONObject obj = new JSONObject(cookie);
+        String sesh = obj.getJSONArray("sesh").get(0).toString();
+        System.out.println("COOKIE: "+sesh);
+        sesh = new String(Base64.getDecoder().decode(sesh));
 
-        int count = jdbcTemplate.queryForObject(GET_LOGIN_TOKEN_ATTEMPT, new Object[] {cookie}, Integer.class);
+        int count = jdbcTemplate.queryForObject(GET_LOGIN_TOKEN_ATTEMPT, new Object[] {sesh}, Integer.class);
         if(count == 1){
             return true;
         }
