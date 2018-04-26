@@ -85,11 +85,12 @@ DROP TABLE IF EXISTS `logged_in`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `logged_in` (
-  `id` bigint(20) DEFAULT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `token` varchar(200) DEFAULT NULL,
   `user_id` bigint(20) DEFAULT NULL,
-  `loggedin` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `loggedin` tinyint(4) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -98,7 +99,7 @@ CREATE TABLE `logged_in` (
 
 LOCK TABLES `logged_in` WRITE;
 /*!40000 ALTER TABLE `logged_in` DISABLE KEYS */;
-INSERT INTO `logged_in` VALUES (NULL,'5bcbfb7bd70849278e990a6fe0670a89',20,1),(NULL,'2e369561876446efa65382752baa3edc',20,1),(NULL,'eba55e75da5d4039871f2a6605485199',20,1),(NULL,'05421fc1245a4b72a5071d9285699824',20,1),(NULL,'cbd96986417b402f998e6ab169f5ca93',20,1),(NULL,'d5f7c90c88d7406bbb98a2b7a2d1ca01',20,1),(NULL,'ed824760ff134aa58666601f672c4736',20,1),(NULL,'a37c7dadad944a28809c4f3fbec9fb25',20,1),(NULL,'cdf192f8fe594c3c87e2cbf4ac3946fc',21,1),(NULL,'98d34c4f358b4077a8f7b8c9ab686dd6',21,1),(NULL,'bcd0625ea90143fdb9d553164fd8c9db',20,1),(NULL,'0a1bf2e1e20747ee9b787fef282b458f',20,1),(NULL,'2cf48a94df3740b3b297bcddfc48c8ce',22,1),(NULL,'7c462a9574c445cd822f28b1caa90849',22,1),(NULL,'17d99127d6bb4fdabe48230e4bf47dbe',23,1),(NULL,'5db28b732570474dafaeff6a21b0c902',23,1),(NULL,'5e0e7bd9f6f241d8bda0fca9908b9dae',24,1),(NULL,'d1ddef9a56b94f2c91176794d402b916',24,1);
+INSERT INTO `logged_in` VALUES (38,'2b4ecb1682254682a63f4d9499c24489',25,1),(39,'4029ab50d3c1470fb66ae789442b6806',25,1),(40,'ae0ca90a98d0446f87c5697400dd0dd3',25,1),(41,'c2ebf590312844e4a0784347a79cc30d',25,1),(42,'ed2dabfc94124a148f9bab808ca8d9b3',25,1),(43,'fbe3637642914beaa7792b3da3d691dd',25,1),(44,'9108981768d94f4ab6a7d5e381020e39',25,1),(45,'071dfdf1c1e443139aa96e649f808df7',25,1);
 /*!40000 ALTER TABLE `logged_in` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +222,7 @@ CREATE TABLE `users` (
   `gender` varchar(200) DEFAULT NULL,
   `local_spot` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +231,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(3,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(4,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(5,'James Mackler dudette',21,'2013-02-10 00:00:00',0,NULL,0,NULL,NULL,NULL,NULL,NULL),(6,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(7,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(8,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@2b0f28d5','[B@2b0f28d5','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(9,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@62f639b0','[B@62f639b0','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(10,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@5edcfe8c','[B@5edcfe8c','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(11,',„E×LLìÊÕB.ò‚ÔÔ/!‡mMÉÐm™ÒS¨Å',NULL,NULL,NULL,NULL,NULL,'[B@70de5ac0','[B@70de5ac0',',„E×LLìÊÕB.ò‚ÔÔ/!‡mMÉÐm™ÒS¨Å',NULL,NULL),(12,'LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL,NULL,NULL,NULL,'[B@2add56d4','[B@2add56d4','LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL),(13,'LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL,NULL,NULL,NULL,'[B@1ca888b8','[B@1ca888b8','LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL),(14,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@528c4777','[B@528c4777','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(15,'ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL,NULL,NULL,NULL,'[B@3e397b68','[B@3e397b68','ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL),(16,'ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL,NULL,NULL,NULL,'[B@4b4a7020','[B@4b4a7020','ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL),(17,'úi‚ßÒ…&)®ºŠ‰wµ~@ü·}\Zz(²lºbY',NULL,NULL,NULL,NULL,NULL,'[B@12cb85a','[B@12cb85a','úi‚ßÒ…&)®ºŠ‰wµ~@ü·}\Zz(²lºbY',NULL,NULL),(18,'hey',NULL,NULL,NULL,NULL,NULL,'hey','hey','hey',NULL,NULL),(19,'boi',NULL,NULL,NULL,NULL,NULL,'boi','boi','boi',NULL,NULL),(20,'bi',NULL,NULL,NULL,NULL,NULL,'bi','bi','bi',NULL,NULL),(21,'ta',NULL,NULL,NULL,NULL,NULL,'ta','ta','ta',NULL,NULL),(22,'so',NULL,NULL,NULL,NULL,NULL,'so','so','so',NULL,NULL),(23,'po',NULL,NULL,NULL,NULL,NULL,'po','po','po',NULL,NULL),(24,'pee',NULL,NULL,NULL,NULL,NULL,'pee','pee','pee',NULL,NULL);
+INSERT INTO `users` VALUES (2,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(3,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(4,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(5,'James Mackler dudette',21,'2013-02-10 00:00:00',0,NULL,0,NULL,NULL,NULL,NULL,NULL),(6,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(7,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(8,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@2b0f28d5','[B@2b0f28d5','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(9,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@62f639b0','[B@62f639b0','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(10,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@5edcfe8c','[B@5edcfe8c','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(11,',„E×LLìÊÕB.ò‚ÔÔ/!‡mMÉÐm™ÒS¨Å',NULL,NULL,NULL,NULL,NULL,'[B@70de5ac0','[B@70de5ac0',',„E×LLìÊÕB.ò‚ÔÔ/!‡mMÉÐm™ÒS¨Å',NULL,NULL),(12,'LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL,NULL,NULL,NULL,'[B@2add56d4','[B@2add56d4','LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL),(13,'LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL,NULL,NULL,NULL,'[B@1ca888b8','[B@1ca888b8','LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL),(14,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@528c4777','[B@528c4777','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(15,'ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL,NULL,NULL,NULL,'[B@3e397b68','[B@3e397b68','ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL),(16,'ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL,NULL,NULL,NULL,'[B@4b4a7020','[B@4b4a7020','ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL),(17,'úi‚ßÒ…&)®ºŠ‰wµ~@ü·}\Zz(²lºbY',NULL,NULL,NULL,NULL,NULL,'[B@12cb85a','[B@12cb85a','úi‚ßÒ…&)®ºŠ‰wµ~@ü·}\Zz(²lºbY',NULL,NULL),(18,'hey',NULL,NULL,NULL,NULL,NULL,'hey','hey','hey',NULL,NULL),(19,'boi',NULL,NULL,NULL,NULL,NULL,'boi','boi','boi',NULL,NULL),(20,'bi',NULL,NULL,NULL,NULL,NULL,'bi','bi','bi',NULL,NULL),(21,'ta',NULL,NULL,NULL,NULL,NULL,'ta','ta','ta',NULL,NULL),(22,'so',NULL,NULL,NULL,NULL,NULL,'so','so','so',NULL,NULL),(23,'po',NULL,NULL,NULL,NULL,NULL,'po','po','po',NULL,NULL),(24,'pee',NULL,NULL,NULL,NULL,NULL,'pee','pee','pee',NULL,NULL),(25,'pa',NULL,NULL,NULL,NULL,NULL,'pa','pa','pa',NULL,NULL),(26,'[B@16b6e651',NULL,NULL,NULL,NULL,NULL,'[B@57cb44fa','ConorT38','blizzardofozz1',NULL,NULL),(27,'[B@e707a58',NULL,NULL,NULL,NULL,NULL,'[B@73f782ca','cothompson16','password',NULL,NULL),(28,'[B@21624eb5',NULL,NULL,NULL,NULL,NULL,'[B@57eeab61','[B@ae0bed2','ç¤G~ÉEi|ägì{�ÂÄ…ÙSˆ* <•m7}Œ½',NULL,NULL),(29,'[B@523fe37f',NULL,NULL,NULL,NULL,NULL,'[B@682aad63','[B@4c498e06','ìÝ—@\\y´îw‘�Òµx“Ù°j‚S\r÷)ÚïÎõ',NULL,NULL),(30,'plp',NULL,NULL,NULL,NULL,NULL,'plp@plp.xom','plp','plp',NULL,NULL),(31,'[B@425ba800',NULL,NULL,NULL,NULL,NULL,'[B@73c9fdc1','[B@77869304','×CÈÔ	&D˜¦É�K•ä¢KmV1_ç÷ 7¡²',NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -243,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-25 17:34:48
+-- Dump completed on 2018-04-26 16:22:52

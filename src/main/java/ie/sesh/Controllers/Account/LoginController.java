@@ -1,6 +1,8 @@
 package ie.sesh.Controllers.Account;
 
+import com.google.gson.Gson;
 import ie.sesh.Utils.Authentication;
+import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,8 +10,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 public class LoginController {
+
+    private static final Logger log = Logger.getLogger(LoginController.class);
+
 
     @Autowired
     LoginDAO loginDAO;
@@ -20,17 +28,17 @@ public class LoginController {
 
         final JSONObject obj = new JSONObject(login_data);
         //String username = Authentication.encrypt(obj.getJSONArray("username").get(0).toString());
-        //String password = Authentication.encrypt(obj.getJSONArray("password").get(0).toString());
+        //String password = Authentication.hashPassword(obj.getJSONArray("password").get(0).toString());
 
         String username = obj.getJSONArray("username").get(0).toString();
         String password = obj.getJSONArray("password").get(0).toString();
 
-        System.out.println("USERNAME: "+username+"  PASSWORD:  "+password);
+        log.info("USERNAME: "+username+"  PASSWORD:  "+password);
         Object result = loginDAO.login(username,password);
         if(result instanceof Boolean){
             return "false";
         }else {
-            return result.toString();
+            return new Gson().toJson(new HashMap((Map<String,String>)result));
         }
     }
 
@@ -45,6 +53,20 @@ public class LoginController {
         }
         return false;
 
+    }
+
+    @PostMapping("/logout")
+    @ResponseBody
+    public void logout(@RequestBody String logout_data) throws Exception {
+
+        final JSONObject obj = new JSONObject(logout_data);
+        //String username = Authentication.encrypt(obj.getJSONArray("username").get(0).toString());
+        //String password = Authentication.encrypt(obj.getJSONArray("password").get(0).toString());
+
+        String id = obj.getJSONArray("id").get(0).toString();
+
+        System.out.println("ID: "+id);
+        loginDAO.logout(id);
     }
 
 }

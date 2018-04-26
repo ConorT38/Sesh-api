@@ -15,12 +15,15 @@ import org.springframework.stereotype.Component;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 import static ie.sesh.Database.SQLConstants.*;
 
 @Component
 public class LoginDAOImpl implements LoginDAO {
+
     private static final Logger log = Logger.getLogger(LoginDAOImpl.class);
 
     @Autowired
@@ -33,6 +36,7 @@ public class LoginDAOImpl implements LoginDAO {
         int count = jdbcTemplate.queryForObject(LOGIN_ATTEMPT, new Object[] {username,password}, Integer.class);
 
         if (count == 1) {
+
             int id = jdbcTemplate.queryForObject(LOGIN_SUCCESS, new Object[] {username,password}, Integer.class);
             final String uuid = UUID.randomUUID().toString().replace("-", "");
 
@@ -43,7 +47,10 @@ public class LoginDAOImpl implements LoginDAO {
                 ps.setInt(2, id);
                 return ps;
             }, holder);
-            return uuid;
+
+            Map<String,String> result = new HashMap<String,String>();
+            result.put(Integer.toString(id),uuid);
+            return result;
         }
         return false;
     }
@@ -53,7 +60,8 @@ public class LoginDAOImpl implements LoginDAO {
        // cookie = Authentication.decrypt(cookie);
         final JSONObject obj = new JSONObject(cookie);
         String sesh = obj.getJSONArray("sesh").get(0).toString();
-        System.out.println("COOKIE: "+sesh);
+
+        log.info("COOKIE: "+sesh);
         sesh = new String(Base64.getDecoder().decode(sesh));
 
         int count = jdbcTemplate.queryForObject(GET_LOGIN_TOKEN_ATTEMPT, new Object[] {sesh}, Integer.class);
@@ -61,5 +69,17 @@ public class LoginDAOImpl implements LoginDAO {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public void logout(String id) throws Exception{
+        log.info("Attempting logout with id "+id);
+
+            KeyHolder holder = new GeneratedKeyHolder();
+            jdbcTemplate.update(connection -> {
+                PreparedStatement ps = connection.prepareStatement(LOG_LOGOUT, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, id);
+                return ps;
+            }, holder);
     }
 }
