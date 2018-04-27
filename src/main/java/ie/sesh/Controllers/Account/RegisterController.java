@@ -36,8 +36,7 @@ public class RegisterController {
         String name = obj.getJSONArray("name").get(0).toString();
 
         log.info("NAME: "+name+"  HAS BEEN ADDED");
-        boolean result = registerDAO.registerUser(name,username,email,password);
-        if(result){
+        if(registerDAO.registerUser(name,username,email,password)){
             return "true";
         }else {
             return "false";

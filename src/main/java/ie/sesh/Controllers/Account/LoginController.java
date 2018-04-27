@@ -36,7 +36,7 @@ public class LoginController {
         log.info("USERNAME: "+username+"  PASSWORD:  "+password);
         Object result = loginDAO.login(username,password);
         if(result instanceof Boolean){
-            return "false";
+            return String.valueOf(result);
         }else {
             return new Gson().toJson(new HashMap((Map<String,String>)result));
         }
@@ -45,13 +45,11 @@ public class LoginController {
     @PostMapping("/check/login")
     @ResponseBody
     public boolean checkLogin(@RequestBody String cookie_data) throws Exception {
-        System.out.println(cookie_data);
+        log.info("COOKIE: "+cookie_data);
         final JSONObject obj = new JSONObject(cookie_data);
         String cookie = obj.getJSONArray("sesh").get(0).toString();
-        if(loginDAO.checkLogged(cookie_data)){
-            return true;
-        }
-        return false;
+
+        return loginDAO.checkLogged(cookie_data);
 
     }
 
