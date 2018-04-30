@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StatusService {
 
@@ -20,6 +22,10 @@ public class StatusService {
 
     public Status getStatus(int id){
         return statusDAO.getStatus(id);
+    }
+
+    public List<Status> getAllStatus(int id){
+        return statusDAO.getAllStatus(id);
     }
 
     public void updateStatus(Status status){

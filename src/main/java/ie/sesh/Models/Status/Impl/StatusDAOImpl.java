@@ -11,14 +11,15 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static ie.sesh.Database.SQLConstants.*;
 import static ie.sesh.Database.SQLConstants.DELETE_STATUS;
 import static ie.sesh.Database.SQLConstants.INSERT_STATUS;
+import static java.lang.Math.toIntExact;
 
 @Component
 public class StatusDAOImpl implements StatusDAO{
@@ -28,8 +29,28 @@ public class StatusDAOImpl implements StatusDAO{
     private JdbcTemplate jdbcTemplate;
 
     public Status getStatus(int id) {
-        log.info("Getting user");
+        log.info("Getting status by id "+id);
         return (Status)jdbcTemplate.queryForObject(GET_STATUS_BY_ID, new Object[] {id}, new StatusMapper());
+    }
+
+    public List<Status> getAllStatus(int id) {
+        log.info("Getting statuses by id "+id);
+        List<Status> statuses = new ArrayList<Status>();
+        List<Map<String,Object>> statusList = jdbcTemplate.queryForList(GET_LIVE_FEED, new Object[]{id});
+
+        for(Map status: statusList){
+            Status s = new Status();
+            s.setUser_id(toIntExact((Long)(status.get("id"))));
+            s.setMessage((String) status.get("message"));
+            s.setLocation((int) status.get("location"));
+            s.setLikes((int)status.get("likes"));
+            s.setDate((Date) status.get("uploaded"));
+            s.setGoing((String)status.get("going"));
+            s.setMaybe((String)status.get("maybe"));
+            s.setNot_going((String)status.get("not_going"));
+            statuses.add(s);
+        }
+        return statuses;
     }
 
     public void updateStatus(Status status) {

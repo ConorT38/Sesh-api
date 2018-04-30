@@ -20,8 +20,7 @@ public class Status {
 
     public Status() {}
 
-    public Status(int id, int user_id, String message, int location, int likes, Date date, String going,String maybe, String not_going) {
-        this.id = id;
+    public Status(int user_id, String message, int location, int likes, Date date, String going,String maybe, String not_going) {
         this.user_id = user_id;
         this.message = message;
         this.location = location;

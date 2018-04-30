@@ -90,7 +90,7 @@ CREATE TABLE `logged_in` (
   `user_id` bigint(20) DEFAULT NULL,
   `loggedin` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `logged_in` (
 
 LOCK TABLES `logged_in` WRITE;
 /*!40000 ALTER TABLE `logged_in` DISABLE KEYS */;
-INSERT INTO `logged_in` VALUES (38,'2b4ecb1682254682a63f4d9499c24489',25,1),(39,'4029ab50d3c1470fb66ae789442b6806',25,1),(40,'ae0ca90a98d0446f87c5697400dd0dd3',25,1),(41,'c2ebf590312844e4a0784347a79cc30d',25,1),(42,'ed2dabfc94124a148f9bab808ca8d9b3',25,1),(43,'fbe3637642914beaa7792b3da3d691dd',25,1),(44,'9108981768d94f4ab6a7d5e381020e39',25,1),(45,'071dfdf1c1e443139aa96e649f808df7',25,1),(46,'32040e12f9d34050ad408b1e2736d719',25,1),(47,'7b517f3811644fc9b6a05657e8154d2d',25,1),(48,'21a7d69573e74b2ba5c2fbe77eab4811',25,1),(49,'4e8ec0988d8043529bab3bb3b2c2f246',25,1),(50,'354f0d7e1b6547019bcd148a6328ea61',25,1),(51,'f37d217e5eb64645aa18abeecab9cd97',25,1),(52,'f7d6239061aa4831b01900483cde42d9',25,1),(53,'7cf4109155df4d5dba1eee31488ced1e',32,1);
+INSERT INTO `logged_in` VALUES (55,'cd0c816377cb4862b49f49c2ec39949d',25,1),(56,'df6a192be59948bb9c3ca6d47bcdacb6',25,1),(57,'0c922242d6c34a158baf15ef39ecc4e6',25,1);
 /*!40000 ALTER TABLE `logged_in` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +123,7 @@ CREATE TABLE `status` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `status_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,5,'This is the very first status',1,21,NULL,'[0,4]','[3]','[3]'),(2,5,'This is the very first status',1,21,'2013-02-10 00:00:00','[0,4]','[3]','[3]');
+INSERT INTO `status` VALUES (1,5,'This is the very first status',1,21,NULL,'[0,4]','[3]','[3]'),(2,5,'This is the very first status',1,21,'2013-02-10 00:00:00','[0,4]','[3]','[3]'),(3,25,'ay',0,0,'2018-04-30 00:00:00','','',''),(4,25,'say something',0,0,'2018-04-30 00:00:00','','',''),(5,25,'say somethingdsa',0,0,'2018-04-30 00:00:00','','',''),(6,25,'say somethingdsa',0,0,'2018-04-30 00:00:00','','',''),(7,25,'sup',0,0,'2018-04-30 00:00:00','','',''),(8,25,'sa',0,0,'2018-04-30 00:00:00','','',''),(9,25,'This is my first real status.',0,0,'2018-04-30 00:00:00','','',''),(10,25,'\"\"\"',0,0,'2018-04-30 00:00:00','','',''),(11,32,'sum up mang',1,1,NULL,NULL,NULL,NULL),(12,32,'sum up manwq',1,1,NULL,NULL,NULL,NULL),(13,32,'sum up masswq',1,1,NULL,NULL,NULL,NULL),(14,25,'some mad shit',0,0,'2018-04-30 00:00:00','','',''),(15,25,'sup',0,0,'2018-04-30 00:00:00','','',''),(16,25,'sa',0,0,'2018-04-30 00:00:00','','',''),(17,25,'this is my message',0,0,'2018-04-30 00:00:00','','',''),(18,25,'a',0,0,'2018-04-30 00:00:00','','',''),(19,25,'<script>alert(hello)</script>',0,0,'2018-04-30 00:00:00','','','');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,6 +166,32 @@ LOCK TABLES `status_comment` WRITE;
 /*!40000 ALTER TABLE `status_comment` DISABLE KEYS */;
 INSERT INTO `status_comment` VALUES (1,1,5,'This is the very first comment',21,'2013-02-10 00:00:00');
 /*!40000 ALTER TABLE `status_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_relationship`
+--
+
+DROP TABLE IF EXISTS `user_relationship`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user_relationship` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) DEFAULT NULL,
+  `friend_id` bigint(20) DEFAULT NULL,
+  `type` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_relationship`
+--
+
+LOCK TABLES `user_relationship` WRITE;
+/*!40000 ALTER TABLE `user_relationship` DISABLE KEYS */;
+INSERT INTO `user_relationship` VALUES (1,25,32,'friend');
+/*!40000 ALTER TABLE `user_relationship` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -244,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-27 16:08:11
+-- Dump completed on 2018-04-30 17:21:44
