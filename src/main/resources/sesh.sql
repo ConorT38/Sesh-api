@@ -90,7 +90,7 @@ CREATE TABLE `logged_in` (
   `user_id` bigint(20) DEFAULT NULL,
   `loggedin` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `logged_in` (
 
 LOCK TABLES `logged_in` WRITE;
 /*!40000 ALTER TABLE `logged_in` DISABLE KEYS */;
-INSERT INTO `logged_in` VALUES (55,'cd0c816377cb4862b49f49c2ec39949d',25,1),(56,'df6a192be59948bb9c3ca6d47bcdacb6',25,1),(57,'0c922242d6c34a158baf15ef39ecc4e6',25,1);
+INSERT INTO `logged_in` VALUES (55,'cd0c816377cb4862b49f49c2ec39949d',25,1),(56,'df6a192be59948bb9c3ca6d47bcdacb6',25,1),(57,'0c922242d6c34a158baf15ef39ecc4e6',25,1),(58,'997a67e3d75446f7af711f4f2344ed2d',25,1);
 /*!40000 ALTER TABLE `logged_in` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +123,7 @@ CREATE TABLE `status` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `status_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,5,'This is the very first status',1,21,NULL,'[0,4]','[3]','[3]'),(2,5,'This is the very first status',1,21,'2013-02-10 00:00:00','[0,4]','[3]','[3]'),(3,25,'ay',0,0,'2018-04-30 00:00:00','','',''),(4,25,'say something',0,0,'2018-04-30 00:00:00','','',''),(5,25,'say somethingdsa',0,0,'2018-04-30 00:00:00','','',''),(6,25,'say somethingdsa',0,0,'2018-04-30 00:00:00','','',''),(7,25,'sup',0,0,'2018-04-30 00:00:00','','',''),(8,25,'sa',0,0,'2018-04-30 00:00:00','','',''),(9,25,'This is my first real status.',0,0,'2018-04-30 00:00:00','','',''),(10,25,'\"\"\"',0,0,'2018-04-30 00:00:00','','',''),(11,32,'sum up mang',1,1,NULL,NULL,NULL,NULL),(12,32,'sum up manwq',1,1,NULL,NULL,NULL,NULL),(13,32,'sum up masswq',1,1,NULL,NULL,NULL,NULL),(14,25,'some mad shit',0,0,'2018-04-30 00:00:00','','',''),(15,25,'sup',0,0,'2018-04-30 00:00:00','','',''),(16,25,'sa',0,0,'2018-04-30 00:00:00','','',''),(17,25,'this is my message',0,0,'2018-04-30 00:00:00','','',''),(18,25,'a',0,0,'2018-04-30 00:00:00','','',''),(19,25,'<script>alert(hello)</script>',0,0,'2018-04-30 00:00:00','','','');
+INSERT INTO `status` VALUES (1,5,'This is the very first status',1,21,NULL,'[0,4]','[3]','[3]'),(2,5,'This is the very first status',1,21,'2013-02-10 00:00:00','[0,4]','[3]','[3]'),(3,25,'ay',0,0,'2018-04-30 00:00:00','','',''),(4,25,'say something',0,0,'2018-04-30 00:00:00','','',''),(5,25,'say somethingdsa',0,0,'2018-04-30 00:00:00','','',''),(6,25,'say somethingdsa',0,0,'2018-04-30 00:00:00','','',''),(7,25,'sup',0,0,'2018-04-30 00:00:00','','',''),(8,25,'sa',0,0,'2018-04-30 00:00:00','','',''),(9,25,'This is my first real status.',0,0,'2018-04-30 00:00:00','','',''),(10,25,'\"\"\"',0,0,'2018-04-30 00:00:00','','',''),(11,32,'sum up mang',1,1,NULL,NULL,NULL,NULL),(12,32,'sum up manwq',1,1,NULL,NULL,NULL,NULL),(13,32,'sum up masswq',1,1,NULL,NULL,NULL,NULL),(14,25,'some mad shit',0,0,'2018-04-30 00:00:00','','',''),(15,25,'sup',0,0,'2018-04-30 00:00:00','','',''),(16,25,'sa',0,0,'2018-04-30 00:00:00','','',''),(17,25,'this is my message',0,0,'2018-04-30 00:00:00','','',''),(18,25,'a',0,0,'2018-04-30 00:00:00','','',''),(19,25,'<script>alert(hello)</script>',0,0,'2018-04-30 00:00:00','','',''),(20,25,'',0,0,'2018-05-01 00:00:00','','',''),(21,25,'Somethin happenin',0,0,'2018-05-01 00:00:00','','',''),(22,25,'some mad shit',0,0,'2018-05-01 17:26:19','','','');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +181,7 @@ CREATE TABLE `user_relationship` (
   `friend_id` bigint(20) DEFAULT NULL,
   `type` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +190,7 @@ CREATE TABLE `user_relationship` (
 
 LOCK TABLES `user_relationship` WRITE;
 /*!40000 ALTER TABLE `user_relationship` DISABLE KEYS */;
-INSERT INTO `user_relationship` VALUES (1,25,32,'friend');
+INSERT INTO `user_relationship` VALUES (1,25,32,'friend'),(2,25,25,'friend');
 /*!40000 ALTER TABLE `user_relationship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-04-30 17:21:44
+-- Dump completed on 2018-05-01 17:38:46
