@@ -2,21 +2,18 @@ package ie.sesh.Controllers.Status;
 
 import com.google.gson.Gson;
 
-import ie.sesh.Controllers.Users.UserController;
 import ie.sesh.Models.Status.Status;
 import ie.sesh.Services.Status.StatusService;
 import ie.sesh.Utils.CommonUtils;
-
 import ie.sesh.Utils.StatusUtils;
+
 import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class StatusController {
@@ -41,7 +38,7 @@ public class StatusController {
         int id = Integer.parseInt(new JSONObject(user_data).getJSONArray("id").get(0).toString());
         List<Status> statuses= statusService.getAllStatus(id);
         for(int i=0; i<statuses.size(); i++) {
-            log.info("STATUSES: " + statuses.get(i));
+            log.info("STATUSES: " + statuses.get(i).getMessage());
         }
         return statusService.getAllStatus(id);
     }

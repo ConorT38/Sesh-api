@@ -4,7 +4,7 @@ import ie.sesh.Models.Status.Status;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 import java.text.ParseException;
 
 @Component
@@ -15,7 +15,7 @@ public class StatusUtils {
         String message =  new JSONObject(status_data).getJSONArray("message").get(0).toString();
         int location =  Integer.parseInt(new JSONObject(status_data).getJSONArray("location").get(0).toString());
         int likes =  Integer.parseInt(new JSONObject(status_data).getJSONArray("likes").get(0).toString());
-        Date date =  new Date(new java.util.Date().getTime());
+        Timestamp date =  new Timestamp(new java.util.Date().getTime());
         String going =  new JSONObject(status_data).getJSONArray("going").get(0).toString();
         String maybe =  new JSONObject(status_data).getJSONArray("maybe").get(0).toString();
         String not_going =  new JSONObject(status_data).getJSONArray("not_going").get(0).toString();

@@ -44,7 +44,7 @@ public class StatusDAOImpl implements StatusDAO{
             s.setMessage((String) status.get("message"));
             s.setLocation((int) status.get("location"));
             s.setLikes((int)status.get("likes"));
-            s.setDate((Date) status.get("uploaded"));
+            s.setDate((Timestamp) status.get("uploaded"));
             s.setGoing((String)status.get("going"));
             s.setMaybe((String)status.get("maybe"));
             s.setNot_going((String)status.get("not_going"));
@@ -62,7 +62,7 @@ public class StatusDAOImpl implements StatusDAO{
             ps.setString(2, status.getMessage());
             ps.setInt(3, status.getLocation());
             ps.setInt(4, status.getLikes());
-            ps.setDate(5, status.getDate());
+            ps.setTimestamp(5, status.getDate());
             ps.setString(6, status.getGoing());
             ps.setString(7, status.getMaybe());
             ps.setString(8, status.getNot_going());
@@ -79,7 +79,7 @@ public class StatusDAOImpl implements StatusDAO{
             ps.setString(2, status.getMessage());
             ps.setInt(3, status.getLocation());
             ps.setInt(4, status.getLikes());
-            ps.setDate(5, status.getDate());
+            ps.setTimestamp(5, status.getDate());
             ps.setString(6, status.getGoing());
             ps.setString(7, status.getMaybe());
             ps.setString(8, status.getNot_going());
@@ -107,7 +107,7 @@ class StatusMapper implements RowMapper {
         status.setMessage(rs.getString("message"));
         status.setLocation(rs.getInt("location"));
         status.setLikes(rs.getInt("likes"));
-        status.setDate(rs.getDate("uploaded"));
+        status.setDate(rs.getTimestamp("uploaded"));
         status.setGoing(rs.getString("going"));
         status.setMaybe(rs.getString("maybe"));
         status.setNot_going(rs.getString("not_going"));
