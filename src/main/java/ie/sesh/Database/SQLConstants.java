@@ -40,6 +40,7 @@ public class SQLConstants {
     public static final String LOG_LOGOUT = "UPDATE logged_in(token,loggedin) SET token='',loggedin=0 WHERE user_id=?";
 
     public static final String REGISTER_USER = " INSERT INTO users(name,email,password,username) values(?,?,?,?);";
+    public static final String REGISTER_USER_FEED = " INSERT INTO user_relationship(user_id, friend_id,type) SELECT id, id, 'friend' FROM users WHERE username=?";
 
-    public static final String GET_LIVE_FEED = "SELECT status.* FROM status INNER JOIN user_relationship ON status.user_id=user_relationship.friend_id WHERE user_relationship.user_id=? AND user_relationship.type='friend' LIMIT 20";
+    public static final String GET_LIVE_FEED = "SELECT status.*,users.username,users.name FROM status INNER JOIN user_relationship ON status.user_id=user_relationship.friend_id INNER JOIN users ON users.id=status.user_id WHERE user_relationship.user_id=? AND user_relationship.type='friend'";
 }

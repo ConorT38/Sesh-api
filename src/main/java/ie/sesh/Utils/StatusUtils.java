@@ -5,21 +5,27 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
-import java.text.ParseException;
 
 @Component
 public class StatusUtils {
 
-    public Status buildStatus(String status_data) throws ParseException{
-        int user_id =  Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString());
-        String message =  new JSONObject(status_data).getJSONArray("message").get(0).toString();
-        int location =  Integer.parseInt(new JSONObject(status_data).getJSONArray("location").get(0).toString());
-        int likes =  Integer.parseInt(new JSONObject(status_data).getJSONArray("likes").get(0).toString());
-        Timestamp date =  new Timestamp(new java.util.Date().getTime());
-        String going =  new JSONObject(status_data).getJSONArray("going").get(0).toString();
-        String maybe =  new JSONObject(status_data).getJSONArray("maybe").get(0).toString();
-        String not_going =  new JSONObject(status_data).getJSONArray("not_going").get(0).toString();
+    public Status buildStatus(String status_data){
+        int user_id =  (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString()),0);
+        String name = "";
+        String username = "";
+        String message = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("message").get(0).toString(),"");
+        int location = (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("location").get(0).toString()),0);
+        int likes = (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("likes").get(0).toString()),0);
+        Timestamp date = new Timestamp(new java.util.Date().getTime());
+        String going = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("going").get(0).toString(),"");
+        String maybe = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("maybe").get(0).toString(),"");
+        String not_going = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("not_going").get(0).toString(),"");
 
-        return new Status(user_id,message,location,likes,date,going,maybe,not_going);
+        return new Status(user_id,name,username,message,location,likes,date,going,maybe,not_going);
+    }
+
+
+    public Object checkIsNullEmpty(Object value, Object def){
+        return (!value.toString().isEmpty() || value.toString() !=null) ? value : def;
     }
 }

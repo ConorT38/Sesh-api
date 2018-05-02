@@ -41,9 +41,12 @@ public class StatusDAOImpl implements StatusDAO{
         for(Map status: statusList){
             Status s = new Status();
             s.setUser_id(toIntExact((Long)(status.get("id"))));
+            s.setName((String) status.get("name"));
+            s.setUsername((String) status.get("username"));
             s.setMessage((String) status.get("message"));
             s.setLocation((int) status.get("location"));
             s.setLikes((int)status.get("likes"));
+            log.info("UPLOADED: "+status.get("uploaded"));
             s.setDate((Timestamp) status.get("uploaded"));
             s.setGoing((String)status.get("going"));
             s.setMaybe((String)status.get("maybe"));

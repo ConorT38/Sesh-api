@@ -56,12 +56,11 @@ public class StatusController {
     @ResponseBody
     public boolean createStatus(@RequestBody String status_data){
         try {
-        Status status = statusUtils.buildStatus(status_data);
+            Status status = statusUtils.buildStatus(status_data);
             statusService.createStatus(status);
             return true;
-        }catch(ParseException e){
-            return false;
         }catch (Exception e){
+            log.error(e.getMessage());
             return false;
         }
     }

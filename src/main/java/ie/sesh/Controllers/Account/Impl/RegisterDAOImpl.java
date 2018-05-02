@@ -36,7 +36,13 @@ public class RegisterDAOImpl implements RegisterDAO {
             ps.setString(4, username);
             return ps;
         }, holder) >0){
-            return true;
+            if(jdbcTemplate.update(connection -> {
+                PreparedStatement ps = connection.prepareStatement(REGISTER_USER_FEED, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, username);
+                return ps;
+            }, holder) >0){
+                return true;
+            }
         }
         return false;
     }

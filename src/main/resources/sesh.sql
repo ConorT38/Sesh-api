@@ -90,7 +90,7 @@ CREATE TABLE `logged_in` (
   `user_id` bigint(20) DEFAULT NULL,
   `loggedin` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +99,7 @@ CREATE TABLE `logged_in` (
 
 LOCK TABLES `logged_in` WRITE;
 /*!40000 ALTER TABLE `logged_in` DISABLE KEYS */;
-INSERT INTO `logged_in` VALUES (55,'cd0c816377cb4862b49f49c2ec39949d',25,1),(56,'df6a192be59948bb9c3ca6d47bcdacb6',25,1),(57,'0c922242d6c34a158baf15ef39ecc4e6',25,1),(58,'997a67e3d75446f7af711f4f2344ed2d',25,1);
+INSERT INTO `logged_in` VALUES (55,'cd0c816377cb4862b49f49c2ec39949d',25,1),(56,'df6a192be59948bb9c3ca6d47bcdacb6',25,1),(57,'0c922242d6c34a158baf15ef39ecc4e6',25,1),(58,'997a67e3d75446f7af711f4f2344ed2d',25,1),(59,'2c04c7ed07b047e6b2faa8305cc48d5d',32,1),(60,'9810165689fe4b718ba2e9bfbe52498a',33,1),(61,'279d07a5536241568fff6bfaf0779674',34,1);
 /*!40000 ALTER TABLE `logged_in` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,14 +116,14 @@ CREATE TABLE `status` (
   `message` text,
   `location` int(11) DEFAULT NULL,
   `likes` int(11) DEFAULT NULL,
-  `uploaded` datetime DEFAULT NULL,
+  `uploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `going` text,
   `maybe` text,
   `not_going` text,
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   CONSTRAINT `status_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -132,7 +132,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,5,'This is the very first status',1,21,NULL,'[0,4]','[3]','[3]'),(2,5,'This is the very first status',1,21,'2013-02-10 00:00:00','[0,4]','[3]','[3]'),(3,25,'ay',0,0,'2018-04-30 00:00:00','','',''),(4,25,'say something',0,0,'2018-04-30 00:00:00','','',''),(5,25,'say somethingdsa',0,0,'2018-04-30 00:00:00','','',''),(6,25,'say somethingdsa',0,0,'2018-04-30 00:00:00','','',''),(7,25,'sup',0,0,'2018-04-30 00:00:00','','',''),(8,25,'sa',0,0,'2018-04-30 00:00:00','','',''),(9,25,'This is my first real status.',0,0,'2018-04-30 00:00:00','','',''),(10,25,'\"\"\"',0,0,'2018-04-30 00:00:00','','',''),(11,32,'sum up mang',1,1,NULL,NULL,NULL,NULL),(12,32,'sum up manwq',1,1,NULL,NULL,NULL,NULL),(13,32,'sum up masswq',1,1,NULL,NULL,NULL,NULL),(14,25,'some mad shit',0,0,'2018-04-30 00:00:00','','',''),(15,25,'sup',0,0,'2018-04-30 00:00:00','','',''),(16,25,'sa',0,0,'2018-04-30 00:00:00','','',''),(17,25,'this is my message',0,0,'2018-04-30 00:00:00','','',''),(18,25,'a',0,0,'2018-04-30 00:00:00','','',''),(19,25,'<script>alert(hello)</script>',0,0,'2018-04-30 00:00:00','','',''),(20,25,'',0,0,'2018-05-01 00:00:00','','',''),(21,25,'Somethin happenin',0,0,'2018-05-01 00:00:00','','',''),(22,25,'some mad shit',0,0,'2018-05-01 17:26:19','','','');
+INSERT INTO `status` VALUES (1,5,'This is the very first status',1,21,'2018-05-02 10:54:23','[0,4]','[3]','[3]'),(2,5,'This is the very first status',1,21,'2013-02-10 00:00:00','[0,4]','[3]','[3]'),(3,25,'ay',0,0,'2018-04-29 23:00:00','','',''),(4,25,'say something',0,0,'2018-04-29 23:00:00','','',''),(5,25,'say somethingdsa',0,0,'2018-04-29 23:00:00','','',''),(6,25,'say somethingdsa',0,0,'2018-04-29 23:00:00','','',''),(7,25,'sup',0,0,'2018-04-29 23:00:00','','',''),(8,25,'sa',0,0,'2018-04-29 23:00:00','','',''),(9,25,'This is my first real status.',0,0,'2018-04-29 23:00:00','','',''),(10,25,'\"\"\"',0,0,'2018-04-29 23:00:00','','',''),(11,32,'sum up mang',1,1,'2018-05-02 10:54:23',NULL,NULL,NULL),(12,32,'sum up manwq',1,1,'2018-05-02 10:54:23',NULL,NULL,NULL),(13,32,'sum up masswq',1,1,'2018-05-02 10:54:23',NULL,NULL,NULL),(14,25,'some mad shit',0,0,'2018-04-29 23:00:00','','',''),(15,25,'sup',0,0,'2018-04-29 23:00:00','','',''),(16,25,'sa',0,0,'2018-04-29 23:00:00','','',''),(17,25,'this is my message',0,0,'2018-04-29 23:00:00','','',''),(18,25,'a',0,0,'2018-04-29 23:00:00','','',''),(19,25,'<script>alert(hello)</script>',0,0,'2018-04-29 23:00:00','','',''),(20,25,'',0,0,'2018-04-30 23:00:00','','',''),(21,25,'Somethin happenin',0,0,'2018-04-30 23:00:00','','',''),(22,25,'some mad shit',0,0,'2018-05-01 16:26:19','','',''),(23,25,'another one',0,0,'2018-05-02 08:47:35','','',''),(24,25,'another one',0,0,'2018-05-02 08:48:06','','',''),(25,25,'booiiiiii',0,0,'2018-05-02 13:35:51','','',''),(26,32,'okay',0,0,'2018-05-02 14:04:43','','',''),(27,32,'somethings wrong',0,0,'2018-05-02 14:04:53','','',''),(28,33,'my first thing',0,0,'2018-05-02 15:22:27','','',''),(29,33,'my second thing',0,0,'2018-05-02 15:23:10','','',''),(30,34,'wassup',0,0,'2018-05-02 15:47:01','','',''),(31,34,'no',0,0,'2018-05-02 15:47:41','','','');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +181,7 @@ CREATE TABLE `user_relationship` (
   `friend_id` bigint(20) DEFAULT NULL,
   `type` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -190,7 +190,7 @@ CREATE TABLE `user_relationship` (
 
 LOCK TABLES `user_relationship` WRITE;
 /*!40000 ALTER TABLE `user_relationship` DISABLE KEYS */;
-INSERT INTO `user_relationship` VALUES (1,25,32,'friend'),(2,25,25,'friend');
+INSERT INTO `user_relationship` VALUES (1,25,32,'friend'),(2,25,25,'friend'),(3,32,32,'friend'),(4,33,33,'friend'),(5,33,33,'friend'),(6,34,34,'friend');
 /*!40000 ALTER TABLE `user_relationship` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,7 +248,7 @@ CREATE TABLE `users` (
   `gender` varchar(200) DEFAULT NULL,
   `local_spot` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +257,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(3,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(4,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(5,'James Mackler dudette',21,'2013-02-10 00:00:00',0,NULL,0,NULL,NULL,NULL,NULL,NULL),(6,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(7,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(8,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@2b0f28d5','[B@2b0f28d5','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(9,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@62f639b0','[B@62f639b0','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(10,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@5edcfe8c','[B@5edcfe8c','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(11,',„E×LLìÊÕB.ò‚ÔÔ/!‡mMÉÐm™ÒS¨Å',NULL,NULL,NULL,NULL,NULL,'[B@70de5ac0','[B@70de5ac0',',„E×LLìÊÕB.ò‚ÔÔ/!‡mMÉÐm™ÒS¨Å',NULL,NULL),(12,'LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL,NULL,NULL,NULL,'[B@2add56d4','[B@2add56d4','LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL),(13,'LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL,NULL,NULL,NULL,'[B@1ca888b8','[B@1ca888b8','LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL),(14,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@528c4777','[B@528c4777','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(15,'ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL,NULL,NULL,NULL,'[B@3e397b68','[B@3e397b68','ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL),(16,'ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL,NULL,NULL,NULL,'[B@4b4a7020','[B@4b4a7020','ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL),(17,'úi‚ßÒ…&)®ºŠ‰wµ~@ü·}\Zz(²lºbY',NULL,NULL,NULL,NULL,NULL,'[B@12cb85a','[B@12cb85a','úi‚ßÒ…&)®ºŠ‰wµ~@ü·}\Zz(²lºbY',NULL,NULL),(18,'hey',NULL,NULL,NULL,NULL,NULL,'hey','hey','hey',NULL,NULL),(19,'boi',NULL,NULL,NULL,NULL,NULL,'boi','boi','boi',NULL,NULL),(20,'bi',NULL,NULL,NULL,NULL,NULL,'bi','bi','bi',NULL,NULL),(21,'ta',NULL,NULL,NULL,NULL,NULL,'ta','ta','ta',NULL,NULL),(22,'so',NULL,NULL,NULL,NULL,NULL,'so','so','so',NULL,NULL),(23,'po',NULL,NULL,NULL,NULL,NULL,'po','po','po',NULL,NULL),(24,'pee',NULL,NULL,NULL,NULL,NULL,'pee','pee','pee',NULL,NULL),(25,'pa',NULL,NULL,NULL,NULL,NULL,'pa','pa','pa',NULL,NULL),(26,'[B@16b6e651',NULL,NULL,NULL,NULL,NULL,'[B@57cb44fa','ConorT38','blizzardofozz1',NULL,NULL),(27,'[B@e707a58',NULL,NULL,NULL,NULL,NULL,'[B@73f782ca','cothompson16','password',NULL,NULL),(28,'[B@21624eb5',NULL,NULL,NULL,NULL,NULL,'[B@57eeab61','[B@ae0bed2','ç¤G~ÉEi|ägì{�ÂÄ…ÙSˆ* <•m7}Œ½',NULL,NULL),(29,'[B@523fe37f',NULL,NULL,NULL,NULL,NULL,'[B@682aad63','[B@4c498e06','ìÝ—@\\y´îw‘�Òµx“Ù°j‚S\r÷)ÚïÎõ',NULL,NULL),(30,'plp',NULL,NULL,NULL,NULL,NULL,'plp@plp.xom','plp','plp',NULL,NULL),(31,'[B@425ba800',NULL,NULL,NULL,NULL,NULL,'[B@73c9fdc1','[B@77869304','×CÈÔ	&D˜¦É�K•ä¢KmV1_ç÷ 7¡²',NULL,NULL),(32,'Conor Thompson',NULL,NULL,NULL,NULL,NULL,'sho@la.nci','sho','sho',NULL,NULL);
+INSERT INTO `users` VALUES (2,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(3,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(4,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(5,'James Mackler dudette',21,'2013-02-10 00:00:00',0,NULL,0,NULL,NULL,NULL,NULL,NULL),(6,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(7,'James Mackle',21,'2013-02-10 00:00:00',1,'guinness',4.2,NULL,NULL,NULL,NULL,NULL),(8,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@2b0f28d5','[B@2b0f28d5','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(9,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@62f639b0','[B@62f639b0','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(10,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@5edcfe8c','[B@5edcfe8c','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(11,',„E×LLìÊÕB.ò‚ÔÔ/!‡mMÉÐm™ÒS¨Å',NULL,NULL,NULL,NULL,NULL,'[B@70de5ac0','[B@70de5ac0',',„E×LLìÊÕB.ò‚ÔÔ/!‡mMÉÐm™ÒS¨Å',NULL,NULL),(12,'LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL,NULL,NULL,NULL,'[B@2add56d4','[B@2add56d4','LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL),(13,'LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL,NULL,NULL,NULL,'[B@1ca888b8','[B@1ca888b8','LIR¥Ü\0Ö¼¯ÂuÌ	�¨Šgxö*µG†�#@[Ï',NULL,NULL),(14,'ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL,NULL,NULL,NULL,'[B@528c4777','[B@528c4777','ã°ÄB˜üšûôÈ™o¹$\'®Aäd›“L¤•™xR¸U',NULL,NULL),(15,'ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL,NULL,NULL,NULL,'[B@3e397b68','[B@3e397b68','ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL),(16,'ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL,NULL,NULL,NULL,'[B@4b4a7020','[B@4b4a7020','ú”ºePrq|ìa’�<~ &»>rDÿfž¬t¦SL\'¶Åe',NULL,NULL),(17,'úi‚ßÒ…&)®ºŠ‰wµ~@ü·}\Zz(²lºbY',NULL,NULL,NULL,NULL,NULL,'[B@12cb85a','[B@12cb85a','úi‚ßÒ…&)®ºŠ‰wµ~@ü·}\Zz(²lºbY',NULL,NULL),(18,'hey',NULL,NULL,NULL,NULL,NULL,'hey','hey','hey',NULL,NULL),(19,'boi',NULL,NULL,NULL,NULL,NULL,'boi','boi','boi',NULL,NULL),(20,'bi',NULL,NULL,NULL,NULL,NULL,'bi','bi','bi',NULL,NULL),(21,'ta',NULL,NULL,NULL,NULL,NULL,'ta','ta','ta',NULL,NULL),(22,'so',NULL,NULL,NULL,NULL,NULL,'so','so','so',NULL,NULL),(23,'po',NULL,NULL,NULL,NULL,NULL,'po','po','po',NULL,NULL),(24,'pee',NULL,NULL,NULL,NULL,NULL,'pee','pee','pee',NULL,NULL),(25,'pa',NULL,NULL,NULL,NULL,NULL,'pa','pa','pa',NULL,NULL),(26,'[B@16b6e651',NULL,NULL,NULL,NULL,NULL,'[B@57cb44fa','ConorT38','blizzardofozz1',NULL,NULL),(27,'[B@e707a58',NULL,NULL,NULL,NULL,NULL,'[B@73f782ca','cothompson16','password',NULL,NULL),(28,'[B@21624eb5',NULL,NULL,NULL,NULL,NULL,'[B@57eeab61','[B@ae0bed2','ç¤G~ÉEi|ägì{�ÂÄ…ÙSˆ* <•m7}Œ½',NULL,NULL),(29,'[B@523fe37f',NULL,NULL,NULL,NULL,NULL,'[B@682aad63','[B@4c498e06','ìÝ—@\\y´îw‘�Òµx“Ù°j‚S\r÷)ÚïÎõ',NULL,NULL),(30,'plp',NULL,NULL,NULL,NULL,NULL,'plp@plp.xom','plp','plp',NULL,NULL),(31,'[B@425ba800',NULL,NULL,NULL,NULL,NULL,'[B@73c9fdc1','[B@77869304','×CÈÔ	&D˜¦É�K•ä¢KmV1_ç÷ 7¡²',NULL,NULL),(32,'Conor Thompson',NULL,NULL,NULL,NULL,NULL,'sho@la.nci','sho','sho',NULL,NULL),(33,'mang',NULL,NULL,NULL,NULL,NULL,'mang@mang.com','mang','mang',NULL,NULL),(34,'The Realest Dude',NULL,NULL,NULL,NULL,NULL,'reael@dude.com','RealestDude','password',NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -270,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-01 17:38:46
+-- Dump completed on 2018-05-02 16:52:02
