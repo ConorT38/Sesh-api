@@ -12,7 +12,6 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -41,6 +40,17 @@ public class StatusController {
             log.info("STATUSES: " + statuses.get(i).getMessage());
         }
         return statusService.getAllStatus(id);
+    }
+
+    @PostMapping("/get/all/user/status")
+    @ResponseBody
+    public List<Status> getAllUserStatus(@RequestBody String user_data) {
+        int id = Integer.parseInt(new JSONObject(user_data).getJSONArray("id").get(0).toString());
+        List<Status> statuses= statusService.getAllUserStatus(id);
+        for(int i=0; i<statuses.size(); i++) {
+            log.info("STATUSES: " + statuses.get(i).getMessage());
+        }
+        return statusService.getAllUserStatus(id);
     }
 
     @PostMapping("/update/status")

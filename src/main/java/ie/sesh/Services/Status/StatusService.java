@@ -28,6 +28,10 @@ public class StatusService {
         return statusDAO.getAllStatus(id);
     }
 
+    public List<Status> getAllUserStatus(int id){
+        return statusDAO.getAllUserStatus(id);
+    }
+
     public void updateStatus(Status status){
         statusDAO.updateStatus(status);
     }

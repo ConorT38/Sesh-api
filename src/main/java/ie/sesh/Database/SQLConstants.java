@@ -43,4 +43,5 @@ public class SQLConstants {
     public static final String REGISTER_USER_FEED = " INSERT INTO user_relationship(user_id, friend_id,type) SELECT id, id, 'friend' FROM users WHERE username=?";
 
     public static final String GET_LIVE_FEED = "SELECT status.*,users.username,users.name FROM status INNER JOIN user_relationship ON status.user_id=user_relationship.friend_id INNER JOIN users ON users.id=status.user_id WHERE user_relationship.user_id=? AND user_relationship.type='friend'";
+    public static final String GET_USER_POSTS = "SELECT status.*,users.username,users.name FROM status  INNER JOIN users ON users.id=status.user_id WHERE users.id=?";
 }
