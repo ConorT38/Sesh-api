@@ -22,6 +22,20 @@ public class Status {
 
     public Status() {}
 
+    public Status(int id, int user_id, String name, String username, String message, int location, int likes, Timestamp date, String going,String maybe, String not_going) {
+        this.id = id;
+        this.user_id = user_id;
+        this.name = name;
+        this.username = username;
+        this.message = message;
+        this.location = location;
+        this.likes = likes;
+        this.date = date;
+        this.going = going;
+        this.maybe = maybe;
+        this.not_going = not_going;
+    }
+
     public Status(int user_id, String name, String username, String message, int location, int likes, Timestamp date, String going,String maybe, String not_going) {
         this.user_id = user_id;
         this.name = name;

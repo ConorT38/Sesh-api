@@ -17,6 +17,7 @@ C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Users\Revie
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Status\Comments\Comment.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Exception\SeshException.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Users\Reviews\Impl\ReviewDAOImpl.java
+C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Notifications\NotificationsConstants.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Account\LoginController.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Controllers\Locations\LocationController.java
 C:\cygwin64\home\cthompso\Sesh-api\src\main\java\ie\sesh\Models\Locations\Reviews\LocationReview.java

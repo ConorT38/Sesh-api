@@ -30,6 +30,7 @@ ie\sesh\Models\Status\Status.class
 ie\sesh\Models\Locations\Location.class
 ie\sesh\Models\Users\Reviews\ReviewDAO.class
 ie\sesh\Controllers\Users\UserController.class
+ie\sesh\Models\Notifications\NotificationsConstants.class
 ie\sesh\Services\Locations\LocationService.class
 ie\sesh\Controllers\Account\RegisterDAO.class
 ie\sesh\Models\Users\Impl\UserMapper.class

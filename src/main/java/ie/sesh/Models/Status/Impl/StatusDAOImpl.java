@@ -40,7 +40,8 @@ public class StatusDAOImpl implements StatusDAO{
 
         for(Map status: statusList){
             Status s = new Status();
-            s.setUser_id(toIntExact((Long)(status.get("id"))));
+            s.setId(toIntExact((Long)(status.get("id"))));
+            s.setUser_id(toIntExact((Long)(status.get("user_id"))));
             s.setName((String) status.get("name"));
             s.setUsername((String) status.get("username"));
             s.setMessage((String) status.get("message"));
@@ -63,7 +64,8 @@ public class StatusDAOImpl implements StatusDAO{
 
         for(Map status: statusList){
             Status s = new Status();
-            s.setUser_id(toIntExact((Long)(status.get("id"))));
+            s.setId(toIntExact((Long)(status.get("id"))));
+            s.setUser_id(toIntExact((Long)(status.get("user_id"))));
             s.setName((String) status.get("name"));
             s.setUsername((String) status.get("username"));
             s.setMessage((String) status.get("message"));
@@ -91,6 +93,7 @@ public class StatusDAOImpl implements StatusDAO{
             ps.setString(6, status.getGoing());
             ps.setString(7, status.getMaybe());
             ps.setString(8, status.getNot_going());
+            ps.setInt(9, status.getId());
             return ps;
         }, holder);
     }
@@ -128,7 +131,7 @@ class StatusMapper implements RowMapper {
     @Override
     public Status mapRow(ResultSet rs, int rowNum) throws SQLException {
         Status status = new Status();
-        status.setUser_id(rs.getInt("id"));
+        status.setUser_id(rs.getInt("user_id"));
         status.setMessage(rs.getString("message"));
         status.setLocation(rs.getInt("location"));
         status.setLikes(rs.getInt("likes"));

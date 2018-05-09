@@ -10,7 +10,8 @@ import java.sql.Timestamp;
 public class StatusUtils {
 
     public Status buildStatus(String status_data){
-        int user_id =  (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString()),0);
+        int id = (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString()),0);
+        int user_id =  (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("user_id").get(0).toString()),0);
         String name = "";
         String username = "";
         String message = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("message").get(0).toString(),"");
@@ -21,7 +22,7 @@ public class StatusUtils {
         String maybe = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("maybe").get(0).toString(),"");
         String not_going = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("not_going").get(0).toString(),"");
 
-        return new Status(user_id,name,username,message,location,likes,date,going,maybe,not_going);
+        return new Status(id,user_id,name,username,message,location,likes,date,going,maybe,not_going);
     }
 
 
