@@ -1,5 +1,6 @@
 package ie.sesh.Models.Users.Impl;
 
+import ie.sesh.Models.Status.Status;
 import ie.sesh.Models.Users.User;
 import ie.sesh.Models.Users.UserDAO;
 
@@ -10,13 +11,15 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.jdbc.core.RowMapper;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 
 import static ie.sesh.Database.SQLConstants.*;
+import static java.lang.Math.toIntExact;
 
 @Component
 public class UserDAOImpl implements UserDAO{
@@ -70,6 +73,30 @@ public class UserDAOImpl implements UserDAO{
             ps.setInt(1, id);
             return ps;
         }, holder);
+    }
+
+    @Override
+    public List<User> getAllRecommendedUsers(int id) {
+        log.info("Getting statuses by id "+id);
+        List<User> users = new ArrayList<User>();
+        List<Map<String,Object>> userList = jdbcTemplate.queryForList(GET_RECOMMENDED_USERS, new Object[]{id});
+
+        for(Map user: userList){
+            User u = new User();
+            u.setId(toIntExact((Long)(user.get("id"))));
+            u.setName((String) user.get("name"));
+            u.setAge(toIntExact((Long)(user.get("age"))));
+            u.setDob((Date) user.get("dob"));
+            u.setLocation((int) user.get("location"));
+            u.setFavourite_drink((String) user.get("favourite_drink"));
+            u.setRating((float)user.get("rating"));
+            u.setGender((String)user.get("gender"));
+            u.setLocal_spot((int)user.get("local_spot"));
+            u.setUsername((String) user.get("username"));
+            u.setEmail((String)user.get("email"));
+            users.add(u);
+        }
+        return users;
     }
 }
 

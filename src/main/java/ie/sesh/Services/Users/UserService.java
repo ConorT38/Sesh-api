@@ -6,6 +6,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -31,5 +33,9 @@ public class UserService {
 
     public void deleteUser(int id){
         userDAO.deleteUser(id);
+    }
+
+    public List<User> getAllRecommendedUsers(int id){
+        userDAO.getAllRecommendedUsers(id);
     }
 }

@@ -1,6 +1,7 @@
 package ie.sesh.Controllers.Users;
 
 import com.google.gson.Gson;
+import ie.sesh.Models.Status.Status;
 import ie.sesh.Models.Users.Impl.UserDAOImpl;
 import ie.sesh.Models.Users.User;
 import ie.sesh.Services.Users.UserService;
@@ -10,6 +11,8 @@ import org.apache.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class UserController {
@@ -50,5 +53,16 @@ public class UserController {
     public boolean deleteUser(@RequestParam(name="id") int id) {
         userService.deleteUser(id);
         return true;
+    }
+
+    @PostMapping("/get/recommended/users")
+    @ResponseBody
+    public List<Status> getAllRecommendedUsers(@RequestBody String user_data) {
+        int id = Integer.parseInt(new JSONObject(user_data).getJSONArray("id").get(0).toString());
+        List<Status> statuses = userService.getAllRecommendedUsers(id);
+        for(int i=0; i<statuses.size(); i++) {
+            log.info("STATUSES: " + statuses.get(i).getMessage());
+        }
+        return userService.getAllRecommendedUsers(id);
     }
 }
