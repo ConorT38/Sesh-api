@@ -38,4 +38,8 @@ public class UserService {
     public List<User> getAllRecommendedUsers(int id){
        return userDAO.getAllRecommendedUsers(id);
     }
+
+    public void followUser(int id, int user_id){
+        userDAO.followUser(id,user_id);
+    }
 }

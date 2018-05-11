@@ -105,6 +105,17 @@ public class UserDAOImpl implements UserDAO{
         }
         return users;
     }
+
+    public void followUser(int id, int user_id) {
+        log.info("Following user");
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(FOLLOW_USER, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ps.setInt(2, user_id);
+            return ps;
+        }, holder);
+    }
 }
 
 class UserMapper implements RowMapper {

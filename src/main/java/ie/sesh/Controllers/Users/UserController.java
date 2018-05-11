@@ -65,4 +65,18 @@ public class UserController {
         }
         return userService.getAllRecommendedUsers(id);
     }
+
+    @PostMapping("/follow/user")
+    @ResponseBody
+    public boolean followUser(@RequestBody String user_data){
+        int id = Integer.parseInt(new JSONObject(user_data).getJSONArray("id").get(0).toString());
+        int user_id = Integer.parseInt(new JSONObject(user_data).getJSONArray("user_id").get(0).toString());
+        try {
+            userService.followUser(id,user_id);
+            return true;
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return false;
+        }
+    }
 }

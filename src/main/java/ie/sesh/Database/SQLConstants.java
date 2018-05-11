@@ -42,8 +42,10 @@ public class SQLConstants {
     public static final String REGISTER_USER = " INSERT INTO users(name,email,password,username) values(?,?,?,?);";
     public static final String REGISTER_USER_FEED = " INSERT INTO user_relationship(user_id, friend_id,type) SELECT id, id, 'friend' FROM users WHERE username=?";
 
-    public static final String GET_LIVE_FEED = "SELECT status.*,users.username,users.name FROM status INNER JOIN user_relationship ON status.user_id=user_relationship.friend_id INNER JOIN users ON users.id=status.user_id WHERE user_relationship.user_id=? AND user_relationship.type='friend'";
-    public static final String GET_USER_POSTS = "SELECT status.*,users.username,users.name FROM status  INNER JOIN users ON users.id=status.user_id WHERE users.id=?";
+    public static final String GET_LIVE_FEED = "SELECT status.*,users.username,users.name FROM status INNER JOIN user_relationship ON status.user_id=user_relationship.friend_id INNER JOIN users ON users.id=status.user_id WHERE user_relationship.user_id=? AND user_relationship.type='friend' ORDER BY uploaded DESC";
+    public static final String GET_USER_POSTS = "SELECT status.*,users.username,users.name FROM status  INNER JOIN users ON users.id=status.user_id WHERE users.id=? ORDER BY uploaded DESC";
 
     public static final String GET_RECOMMENDED_USERS = "SELECT u.* FROM users as u WHERE u.id NOT IN (SELECT friend_id FROM user_relationship WHERE user_id = ?) AND location=? LIMIT 3";
+
+    public static final String FOLLOW_USER = "INSERT INTO user_relationship(user_id,friend_id,type) VALUES(?,?,'friend')";
 }

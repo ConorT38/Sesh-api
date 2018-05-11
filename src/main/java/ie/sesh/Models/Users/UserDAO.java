@@ -11,4 +11,5 @@ public interface UserDAO {
     void updateUser(User user);
     void deleteUser(int id);
     List<User> getAllRecommendedUsers(int id);
+    void followUser(int id, int user_id);
 }
