@@ -45,5 +45,5 @@ public class SQLConstants {
     public static final String GET_LIVE_FEED = "SELECT status.*,users.username,users.name FROM status INNER JOIN user_relationship ON status.user_id=user_relationship.friend_id INNER JOIN users ON users.id=status.user_id WHERE user_relationship.user_id=? AND user_relationship.type='friend'";
     public static final String GET_USER_POSTS = "SELECT status.*,users.username,users.name FROM status  INNER JOIN users ON users.id=status.user_id WHERE users.id=?";
 
-    public static final String GET_RECOMMENDED_USERS = "SELECT status.*,users.username,users.name FROM status  INNER JOIN users ON users.id=status.user_id WHERE users.id=?";
+    public static final String GET_RECOMMENDED_USERS = "SELECT u.* FROM users as u WHERE u.id NOT IN (SELECT friend_id FROM user_relationship WHERE user_id = ?) AND location=? LIMIT 3";
 }

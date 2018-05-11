@@ -36,6 +36,6 @@ public class UserService {
     }
 
     public List<User> getAllRecommendedUsers(int id){
-        userDAO.getAllRecommendedUsers(id);
+       return userDAO.getAllRecommendedUsers(id);
     }
 }

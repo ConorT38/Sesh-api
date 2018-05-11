@@ -57,11 +57,11 @@ public class UserController {
 
     @PostMapping("/get/recommended/users")
     @ResponseBody
-    public List<Status> getAllRecommendedUsers(@RequestBody String user_data) {
+    public List<User> getAllRecommendedUsers(@RequestBody String user_data) {
         int id = Integer.parseInt(new JSONObject(user_data).getJSONArray("id").get(0).toString());
-        List<Status> statuses = userService.getAllRecommendedUsers(id);
-        for(int i=0; i<statuses.size(); i++) {
-            log.info("STATUSES: " + statuses.get(i).getMessage());
+        List<User> users = userService.getAllRecommendedUsers(id);
+        for(int i=0; i<users.size(); i++) {
+            log.info("USERS-RECOMMENDED: " + users.get(i).getUsername());
         }
         return userService.getAllRecommendedUsers(id);
     }

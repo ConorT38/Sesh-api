@@ -1,9 +1,9 @@
 package ie.sesh.Models.Users.Impl;
 
-import ie.sesh.Models.Status.Status;
 import ie.sesh.Models.Users.User;
 import ie.sesh.Models.Users.UserDAO;
 
+import ie.sesh.Utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -28,6 +28,9 @@ public class UserDAOImpl implements UserDAO{
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    CommonUtils commonUtils;
 
     public User getUser(int id) {
         log.info("Getting user");
@@ -77,23 +80,27 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public List<User> getAllRecommendedUsers(int id) {
-        log.info("Getting statuses by id "+id);
+
+        User userL = this.getUser(id);
+        int location = userL.getLocation();
+
+        log.info("Getting recommended users by id "+id);
         List<User> users = new ArrayList<User>();
-        List<Map<String,Object>> userList = jdbcTemplate.queryForList(GET_RECOMMENDED_USERS, new Object[]{id});
+        List<Map<String,Object>> userList = jdbcTemplate.queryForList(GET_RECOMMENDED_USERS, new Object[]{id,location});
 
         for(Map user: userList){
             User u = new User();
             u.setId(toIntExact((Long)(user.get("id"))));
-            u.setName((String) user.get("name"));
-            u.setAge(toIntExact((Long)(user.get("age"))));
-            u.setDob((Date) user.get("dob"));
-            u.setLocation((int) user.get("location"));
-            u.setFavourite_drink((String) user.get("favourite_drink"));
-            u.setRating((float)user.get("rating"));
-            u.setGender((String)user.get("gender"));
-            u.setLocal_spot((int)user.get("local_spot"));
-            u.setUsername((String) user.get("username"));
-            u.setEmail((String)user.get("email"));
+            u.setName((String) commonUtils.checkIsNullEmpty(user.get("name"),""));
+            u.setAge((int)(commonUtils.checkIsNullEmpty(user.get("age"),0)));
+            u.setDob((Date) commonUtils.checkIsNullEmpty(user.get("dob"),new Date(new java.util.Date().getTime())));
+            u.setLocation((int) commonUtils.checkIsNullEmpty(user.get("location"),0));
+            u.setFavourite_drink((String) commonUtils.checkIsNullEmpty(user.get("favourite_drink"),"None"));
+            u.setRating(((float) commonUtils.checkIsNullEmpty(user.get("rating"),0.0f)));
+            u.setGender((String) commonUtils.checkIsNullEmpty(user.get("gender"),"?"));
+            u.setLocal_spot((int) commonUtils.checkIsNullEmpty(user.get("local_spot"),0));
+            u.setUsername((String) commonUtils.checkIsNullEmpty(user.get("username"),""));
+            u.setEmail((String) commonUtils.checkIsNullEmpty(user.get("email"),""));
             users.add(u);
         }
         return users;
