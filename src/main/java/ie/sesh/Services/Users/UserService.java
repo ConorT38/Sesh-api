@@ -42,4 +42,8 @@ public class UserService {
     public void followUser(int id, int user_id){
         userDAO.followUser(id,user_id);
     }
+
+    public List<User> getOnlineUsers(int id){
+        return userDAO.getOnlineUsers(id);
+    }
 }

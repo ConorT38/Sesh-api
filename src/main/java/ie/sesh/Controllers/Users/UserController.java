@@ -79,4 +79,15 @@ public class UserController {
             return false;
         }
     }
+
+    @PostMapping("/get/online/users")
+    @ResponseBody
+    public List<User> getOnlineUsers(@RequestBody String user_data){
+        int id = Integer.parseInt(new JSONObject(user_data).getJSONArray("id").get(0).toString());
+        List<User> users = userService.getOnlineUsers(id);
+        for(int i=0; i<users.size(); i++) {
+            log.info("USERS-RECOMMENDED: " + users.get(i).getUsername());
+        }
+        return userService.getOnlineUsers(id);
+    }
 }

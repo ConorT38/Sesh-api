@@ -116,6 +116,24 @@ public class UserDAOImpl implements UserDAO{
             return ps;
         }, holder);
     }
+
+    @Override
+    public List<User> getOnlineUsers(int id) {
+        log.info("Getting online users by id "+id);
+        List<User> users = new ArrayList<User>();
+        List<Map<String,Object>> userList = jdbcTemplate.queryForList(GET_ONLINE_USERS, new Object[]{id,id});
+
+        for(Map user: userList){
+            User u = new User();
+            u.setId(toIntExact((Long)(user.get("id"))));
+            u.setName((String) commonUtils.checkIsNullEmpty(user.get("name"),""));
+            u.setLocation((int) commonUtils.checkIsNullEmpty(user.get("location"),0));
+            u.setRating(((float) commonUtils.checkIsNullEmpty(user.get("rating"),0.0f)));
+            u.setUsername((String) commonUtils.checkIsNullEmpty(user.get("username"),""));
+            users.add(u);
+        }
+        return users;
+    }
 }
 
 class UserMapper implements RowMapper {
