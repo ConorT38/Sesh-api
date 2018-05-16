@@ -53,6 +53,16 @@ public class StatusController {
         return statusService.getAllUserStatus(id);
     }
 
+    @PostMapping("/get/all/user/status/@{username}")
+    @ResponseBody
+    public List<Status> getAllUserProfileStatus(@PathVariable("username") String username) {
+        List<Status> statuses= statusService.getAllUserProfileStatus(username);
+        for(int i=0; i<statuses.size(); i++) {
+            log.info("STATUSES: " + statuses.get(i).getMessage());
+        }
+        return statusService.getAllUserProfileStatus(username);
+    }
+
     @PostMapping("/update/status")
     @ResponseBody
     public boolean updateStatus(@RequestBody String status_data) {

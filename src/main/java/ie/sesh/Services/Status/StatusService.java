@@ -32,6 +32,10 @@ public class StatusService {
         return statusDAO.getAllUserStatus(id);
     }
 
+    public List<Status> getAllUserProfileStatus(String username){
+        return statusDAO.getAllUserProfileStatus(username);
+    }
+
     public void updateStatus(Status status){
         statusDAO.updateStatus(status);
     }

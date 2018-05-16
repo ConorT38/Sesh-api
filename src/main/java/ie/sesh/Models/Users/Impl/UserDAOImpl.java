@@ -134,6 +134,11 @@ public class UserDAOImpl implements UserDAO{
         }
         return users;
     }
+
+    public User getUserProfile(String username) {
+        log.info("Getting user by username "+ username);
+        return (User)jdbcTemplate.queryForObject(GET_USER_PROFILE_BY_USERNAME, new Object[] {username}, new UserMapper());
+    }
 }
 
 class UserMapper implements RowMapper {
@@ -143,6 +148,7 @@ class UserMapper implements RowMapper {
         User user = new User();
         user.setId(rs.getInt("id"));
         user.setName(rs.getString("name"));
+        user.setUsername(rs.getString("username"));
         user.setAge(rs.getInt("age"));
         user.setDob(rs.getDate("dob"));
         user.setFavourite_drink(rs.getString("favourite_drink"));

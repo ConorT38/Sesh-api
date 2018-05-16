@@ -5,6 +5,7 @@ public class SQLConstants {
     public static final String INSERT_USER = " INSERT INTO users(name,age,dob,location,favourite_drink,rating) values(?,?,?,?,?,?);";
     public static final String UPDATE_USER = "UPDATE users SET name=?,age=?,dob=?,location=?,favourite_drink=?,rating=? WHERE id=?";
     public static final String GET_USER_BY_ID = "SELECT * FROM users WHERE id = ?";
+    public static final String GET_USER_PROFILE_BY_USERNAME = "SELECT * FROM users WHERE username = ? LIMIT 1";
     public static final String DELETE_USER = "DELETE FROM users WHERE id=?";
 
     public static final String INSERT_LOCATION = "INSERT INTO location(name,address,website,geolocation,has_promotion,rating,visitors) values(?,?,?,?,?,?,?)";
@@ -15,6 +16,7 @@ public class SQLConstants {
     public static final String INSERT_STATUS = "INSERT INTO status(user_id,message,location,likes,uploaded,going,maybe,not_going) values(?,?,?,?,?,?,?,?)";
     public static final String UPDATE_STATUS = "UPDATE status SET user_id=?,message=?,location=?,likes=?,uploaded=?,going=?,maybe=?,not_going=? WHERE id=?";
     public static final String GET_STATUS_BY_ID = "SELECT * FROM status WHERE id = ?";
+    public static final String GET_STATUS_BY_USERNAME= "SELECT * FROM status INNER JOIN users ON users.id=status.user_id WHERE users.username = ?";
     public static final String DELETE_STATUS = "DELETE FROM status WHERE id=?";
 
     public static final String INSERT_STATUS_COMMENT = "INSERT INTO status_comment(status_id,user_id,message,likes,uploaded) values(?,?,?,?,?)";

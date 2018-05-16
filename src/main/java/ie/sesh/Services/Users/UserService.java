@@ -46,4 +46,8 @@ public class UserService {
     public List<User> getOnlineUsers(int id){
         return userDAO.getOnlineUsers(id);
     }
+
+    public User getUserProfile(String username){
+        return userDAO.getUserProfile(username);
+    }
 }

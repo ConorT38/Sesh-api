@@ -80,6 +80,29 @@ public class StatusDAOImpl implements StatusDAO{
         return statuses;
     }
 
+    public List<Status> getAllUserProfileStatus(String username) {
+        log.info("Getting statuses by username "+username);
+        List<Status> statuses = new ArrayList<Status>();
+        List<Map<String,Object>> statusList = jdbcTemplate.queryForList(GET_STATUS_BY_USERNAME, new Object[]{username});
+
+        for(Map status: statusList){
+            Status s = new Status();
+            s.setId(toIntExact((Long)(status.get("id"))));
+            s.setUser_id(toIntExact((Long)(status.get("user_id"))));
+            s.setName((String) status.get("name"));
+            s.setUsername((String) status.get("username"));
+            s.setMessage((String) status.get("message"));
+            s.setLocation((int) status.get("location"));
+            s.setLikes((int)status.get("likes"));
+            s.setDate((Timestamp) status.get("uploaded"));
+            s.setGoing((String)status.get("going"));
+            s.setMaybe((String)status.get("maybe"));
+            s.setNot_going((String)status.get("not_going"));
+            statuses.add(s);
+        }
+        return statuses;
+    }
+
     public void updateStatus(Status status) {
         log.info("Updating status");
         KeyHolder holder = new GeneratedKeyHolder();

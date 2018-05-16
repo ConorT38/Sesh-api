@@ -13,4 +13,5 @@ public interface UserDAO {
     List<User> getAllRecommendedUsers(int id);
     void followUser(int id, int user_id);
     List<User> getOnlineUsers(int id);
+    User getUserProfile(String username);
 }
