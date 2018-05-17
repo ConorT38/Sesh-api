@@ -3,6 +3,7 @@ package ie.sesh.Models.Status.Comments.Impl;
 import ie.sesh.Models.Status.Comments.Comment;
 
 import ie.sesh.Models.Status.Comments.CommentDAO;
+import ie.sesh.Models.Status.Status;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,12 +12,13 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import static ie.sesh.Database.SQLConstants.*;
+import static java.lang.Math.toIntExact;
 
 @Component
 public class CommentDAOImpl implements CommentDAO{
@@ -31,16 +33,35 @@ public class CommentDAOImpl implements CommentDAO{
         return (Comment)jdbcTemplate.queryForObject(GET_STATUS_COMMENT_BY_ID, new Object[] {id}, new CommentMapper());
     }
 
+    public List<Comment> getAllStatusComments(int id) {
+        log.info("Getting comments by id "+id);
+        List<Comment> comments = new ArrayList<Comment>();
+        List<Map<String,Object>> commentList = jdbcTemplate.queryForList(GET_ALL_STATUS_COMMENTS_BY_ID, new Object[]{id});
+
+        for(Map comment: commentList){
+            Comment c = new Comment();
+            c.setId(toIntExact((Long)(comment.get("id"))));
+            c.setUser_id(toIntExact((Long)(comment.get("user_id"))));
+            c.setName((String) comment.get("name"));
+            c.setUsername((String) comment.get("username"));
+            c.setMessage((String) comment.get("message"));
+            c.setLikes((int)comment.get("likes"));
+            c.setDate((Timestamp) comment.get("uploaded"));
+            comments.add(c);
+        }
+        return comments;
+    }
+
     public void updateComment(Comment comment) {
         log.info("Updating comment");
         KeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(UPDATE_STATUS_COMMENT, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, comment.getStatus_id());
-            ps.setInt(2, comment.getUser_id());
+            ps.setInt(1, comment.getUser_id());
+            ps.setInt(2, comment.getStatus_id());
             ps.setString(3, comment.getMessage());
             ps.setInt(4, comment.getLikes());
-            ps.setDate(5, comment.getDate());
+            ps.setTimestamp(5, comment.getDate());
             return ps;
         }, holder);
     }
@@ -50,11 +71,10 @@ public class CommentDAOImpl implements CommentDAO{
         KeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(INSERT_STATUS_COMMENT, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, comment.getStatus_id());
-            ps.setInt(2, comment.getUser_id());
+            ps.setInt(1, comment.getUser_id());
+            ps.setInt(2, comment.getStatus_id());
             ps.setString(3, comment.getMessage());
             ps.setInt(4, comment.getLikes());
-            ps.setDate(5, comment.getDate());
             return ps;
         }, holder);
     }
@@ -79,7 +99,7 @@ class CommentMapper implements RowMapper {
         comment.setUser_id(rs.getInt("user_id"));
         comment.setMessage(rs.getString("message"));
         comment.setLikes(rs.getInt("likes"));
-        comment.setDate(rs.getDate("uploaded"));
+        comment.setDate(rs.getTimestamp("uploaded"));
         return comment;
     }
 }

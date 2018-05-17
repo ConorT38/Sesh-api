@@ -27,6 +27,7 @@ ie\sesh\Utils\UserUtils.class
 ie\sesh\Models\Status\Comments\Comment.class
 ie\sesh\Models\Users\Reviews\Impl\ReviewMapper.class
 ie\sesh\Models\Status\Status.class
+ie\sesh\Utils\CommentUtils.class
 ie\sesh\Models\Locations\Location.class
 ie\sesh\Models\Users\Reviews\ReviewDAO.class
 ie\sesh\Controllers\Users\UserController.class

@@ -1,6 +1,6 @@
 package ie.sesh.Models.Status.Comments;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Comment {
 
@@ -9,17 +9,30 @@ public class Comment {
     private int user_id;
 
     private String message;
+    private String username;
+    private String name;
     private int likes;
-    private Date date;
+    private Timestamp date;
 
     public Comment() {
     }
 
-    public Comment(int id, int status_id, int user_id, String message, int likes, Date date) {
+    public Comment(int id, int status_id, int user_id, String message, int likes, Timestamp date) {
         this.id = id;
         this.status_id = status_id;
         this.user_id = user_id;
         this.message = message;
+        this.likes = likes;
+        this.date = date;
+    }
+
+    public Comment(int id, int status_id, int user_id, String message, String username, String name, int likes, Timestamp date) {
+        this.id = id;
+        this.status_id = status_id;
+        this.user_id = user_id;
+        this.message = message;
+        this.username = username;
+        this.name = name;
         this.likes = likes;
         this.date = date;
     }
@@ -56,6 +69,22 @@ public class Comment {
         this.message = message;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getLikes() {
         return likes;
     }
@@ -64,11 +93,11 @@ public class Comment {
         this.likes = likes;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 }

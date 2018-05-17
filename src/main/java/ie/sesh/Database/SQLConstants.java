@@ -19,10 +19,11 @@ public class SQLConstants {
     public static final String GET_STATUS_BY_USERNAME= "SELECT * FROM status INNER JOIN users ON users.id=status.user_id WHERE users.username = ?";
     public static final String DELETE_STATUS = "DELETE FROM status WHERE id=?";
 
-    public static final String INSERT_STATUS_COMMENT = "INSERT INTO status_comment(status_id,user_id,message,likes,uploaded) values(?,?,?,?,?)";
-    public static final String UPDATE_STATUS_COMMENT = "UPDATE status_comment SET status_id,user_id=?,message=?,likes=?,uploaded=? WHERE id=?";
-    public static final String GET_STATUS_COMMENT_BY_ID = "SELECT * FROM status_comment WHERE id = ?";
-    public static final String DELETE_STATUS_COMMENT = "DELETE FROM status_comment WHERE id=?";
+    public static final String INSERT_STATUS_COMMENT = "INSERT INTO comments (user_id, status_id, message, likes, uploaded) VALUES(?,?,?,?, NOW());";
+    public static final String UPDATE_STATUS_COMMENT = "UPDATE comments SET status_id,user_id=?,message=?,likes=?,uploaded=? WHERE id=?";
+    public static final String GET_STATUS_COMMENT_BY_ID = "SELECT * FROM comments WHERE id = ?";
+    public static final String GET_ALL_STATUS_COMMENTS_BY_ID = "SELECT * FROM comments INNER JOIN users ON comments.user_id=users.id WHERE status_id = ?";
+    public static final String DELETE_STATUS_COMMENT = "DELETE FROM comments WHERE id=?";
 
     public static final String INSERT_LOCATION_REVIEW = "INSERT INTO location_review(location_id,user_id,review,rating,uploaded) values(?,?,?,?,?)";
     public static final String UPDATE_LOCATION_REVIEW = "UPDATE location_review SET location_id=?,user_id=?,review=?,rating=?,uploaded=? WHERE id=?";

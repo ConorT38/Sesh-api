@@ -7,6 +7,8 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CommentService {
 
@@ -20,6 +22,10 @@ public class CommentService {
 
     public Comment getComment(int id){
         return commentDAO.getComment(id);
+    }
+
+    public List<Comment> getAllStatusComments(int id){
+        return commentDAO.getAllStatusComments(id);
     }
 
     public void updateComment(Comment comment){
