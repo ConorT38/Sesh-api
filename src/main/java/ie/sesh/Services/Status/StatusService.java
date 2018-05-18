@@ -47,4 +47,8 @@ public class StatusService {
     public void deleteStatus(int id){
         statusDAO.deleteStatus(id);
     }
+
+    public boolean checkLikedStatus(int id, int status_id){
+        return statusDAO.checkLikedStatus(id, status_id);
+    }
 }

@@ -9,4 +9,5 @@ public interface CommentDAO {
     void createComment(Comment comment);
     void updateComment(Comment comment);
     void deleteComment(int id);
+    boolean checkLikedComment(int id, int comment_id);
 }

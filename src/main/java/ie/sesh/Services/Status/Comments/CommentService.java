@@ -39,4 +39,8 @@ public class CommentService {
     public void deleteComment(int id){
         commentDAO.deleteComment(id);
     }
+
+    public boolean checkLikedComment(int id, int comment_id){
+        return commentDAO.checkLikedComment(id,comment_id);
+    }
 }

@@ -17,12 +17,13 @@ public class StatusUtils {
         String message = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("message").get(0).toString(),"");
         int location = (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("location").get(0).toString()),0);
         int likes = (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("likes").get(0).toString()),0);
+        boolean liked = false;
         Timestamp date = new Timestamp(new java.util.Date().getTime());
         String going = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("going").get(0).toString(),"");
         String maybe = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("maybe").get(0).toString(),"");
         String not_going = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("not_going").get(0).toString(),"");
 
-        return new Status(id,user_id,name,username,message,location,likes,date,going,maybe,not_going);
+        return new Status(id,user_id,name,username,message,location,likes,liked,date,going,maybe,not_going);
     }
 
 

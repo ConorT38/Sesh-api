@@ -71,4 +71,13 @@ public class CommentsController {
         commentService.deleteComment(id);
         return true;
     }
+
+    @PostMapping("/check/liked/comment")
+    @ResponseBody
+    public boolean checkLikedComment(@RequestBody String comment_data) {
+        int id = Integer.parseInt(new JSONObject(comment_data).getJSONArray("id").get(0).toString());
+        int comment_id = Integer.parseInt(new JSONObject(comment_data).getJSONArray("comment_id").get(0).toString());
+
+        return  commentService.checkLikedComment(id,comment_id);
+    }
 }

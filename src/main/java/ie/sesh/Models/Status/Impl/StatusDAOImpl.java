@@ -47,6 +47,7 @@ public class StatusDAOImpl implements StatusDAO{
             s.setMessage((String) status.get("message"));
             s.setLocation((int) status.get("location"));
             s.setLikes((int)status.get("likes"));
+            s.setLiked(checkLikedStatus(((Long)(status.get("user_id"))).intValue(),((Long)(status.get("id"))).intValue()));
             log.info("UPLOADED: "+status.get("uploaded"));
             s.setDate((Timestamp) status.get("uploaded"));
             s.setGoing((String)status.get("going"));
@@ -71,6 +72,7 @@ public class StatusDAOImpl implements StatusDAO{
             s.setMessage((String) status.get("message"));
             s.setLocation((int) status.get("location"));
             s.setLikes((int)status.get("likes"));
+            s.setLiked(checkLikedStatus(((Long)(status.get("user_id"))).intValue(),((Long)(status.get("id"))).intValue()));
             s.setDate((Timestamp) status.get("uploaded"));
             s.setGoing((String)status.get("going"));
             s.setMaybe((String)status.get("maybe"));
@@ -94,6 +96,7 @@ public class StatusDAOImpl implements StatusDAO{
             s.setMessage((String) status.get("message"));
             s.setLocation((int) status.get("location"));
             s.setLikes((int)status.get("likes"));
+            s.setLiked(checkLikedStatus(((Long)(status.get("user_id"))).intValue(),((Long)(status.get("id"))).intValue()));
             s.setDate((Timestamp) status.get("uploaded"));
             s.setGoing((String)status.get("going"));
             s.setMaybe((String)status.get("maybe"));
@@ -146,6 +149,16 @@ public class StatusDAOImpl implements StatusDAO{
             ps.setInt(1, id);
             return ps;
         }, holder);
+    }
+
+    public boolean checkLikedStatus(int id, int status_id) {
+        log.info("Checking if user:"+id+" likes comment: "+status_id);
+        int check = jdbcTemplate.queryForObject(CHECK_LIKED_STATUS, new Object[]{id,status_id}, Integer.class);
+
+        if(check ==1){
+            return true;
+        }
+        return false;
     }
 }
 

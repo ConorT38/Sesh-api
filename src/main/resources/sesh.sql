@@ -30,7 +30,7 @@ CREATE TABLE `comments` (
   `likes` int(11) DEFAULT NULL,
   `status_id` bigint(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,8 +39,34 @@ CREATE TABLE `comments` (
 
 LOCK TABLES `comments` WRITE;
 /*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-INSERT INTO `comments` VALUES (1,42,'THIS BLOWS','2018-05-17 14:31:59',0,65),(2,42,'olroight, try again','2018-05-17 14:35:18',0,65),(3,42,'wot bout this one','2018-05-17 14:35:50',0,64),(4,42,'THIS BLOWS','2018-05-17 16:31:04',0,50),(5,42,'THIS BLOWS','2018-05-17 16:31:06',0,50),(6,42,'THIS BLOWS','2018-05-17 16:31:06',0,50),(7,25,'sup','2018-05-17 17:10:13',0,50),(8,25,'omg','2018-05-17 17:10:19',0,49);
+INSERT INTO `comments` VALUES (1,42,'THIS BLOWS','2018-05-17 14:31:59',0,65),(2,42,'olroight, try again','2018-05-17 14:35:18',0,65),(3,42,'wot bout this one','2018-05-17 14:35:50',0,64),(4,42,'THIS BLOWS','2018-05-17 16:31:04',0,50),(5,42,'THIS BLOWS','2018-05-17 16:31:06',0,50),(6,42,'THIS BLOWS','2018-05-17 16:31:06',0,50),(7,25,'sup','2018-05-17 17:10:13',0,50),(8,25,'omg','2018-05-17 17:10:19',0,49),(9,42,'olroight, more comments','2018-05-18 07:48:55',0,63),(10,42,'ay what\'s good homie','2018-05-18 10:06:16',0,58),(11,42,'WAY UP HIGH','2018-05-18 12:56:12',0,57),(12,25,'suhh dude','2018-05-18 12:56:32',0,32),(13,25,'','2018-05-18 12:56:48',0,38);
 /*!40000 ALTER TABLE `comments` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comments_likes`
+--
+
+DROP TABLE IF EXISTS `comments_likes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comments_likes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
+  `comment_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `comments_likes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comments_likes`
+--
+
+LOCK TABLES `comments_likes` WRITE;
+/*!40000 ALTER TABLE `comments_likes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comments_likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -142,7 +168,7 @@ CREATE TABLE `logged_in` (
   `user_id` bigint(20) DEFAULT NULL,
   `loggedin` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +177,7 @@ CREATE TABLE `logged_in` (
 
 LOCK TABLES `logged_in` WRITE;
 /*!40000 ALTER TABLE `logged_in` DISABLE KEYS */;
-INSERT INTO `logged_in` VALUES (55,'cd0c816377cb4862b49f49c2ec39949d',25,1),(56,'df6a192be59948bb9c3ca6d47bcdacb6',25,1),(57,'0c922242d6c34a158baf15ef39ecc4e6',25,1),(58,'997a67e3d75446f7af711f4f2344ed2d',25,1),(59,'2c04c7ed07b047e6b2faa8305cc48d5d',32,1),(60,'9810165689fe4b718ba2e9bfbe52498a',33,1),(61,'279d07a5536241568fff6bfaf0779674',34,1),(62,'d3951f02b824448aa43d1160ae88c28c',25,1),(63,'6bb4b7ea07af43f29bb5dcf9da38ec95',25,1),(64,'ee475d335ca346d6ad190ba9b95a9a8c',25,1),(65,'f86db738da474f1f8c31bce624d172c5',35,1),(66,'ad86636906a249f7ad183e55d7035c5a',25,1),(67,'9ad105e2780b4a90a0fe373f44ffcd81',25,1),(68,'96be63fb95f1498cad1884d5fd61cd15',25,1),(69,'bebbec8351744c6c9650c160bd37c649',25,1),(70,'0',36,1),(71,'1c98515a70f0420baad25795f6098f3e',36,1),(72,'86240955af4540caa71679fab33999c6',25,1),(73,'df49e3c849714602b64ee9f297c09af5',25,1),(74,'a984cf2f31414419867343abb997b7e2',37,1),(75,'b3936c7cd67e4606b55640c02463af78',36,1),(76,'a75403ce4ecd4870993d1cd9f310ab05',38,1),(77,'5e900685aaaa4a189772b2b20ae12939',36,1),(78,'751be5df5e1440008e6f3f24a89dc2b3',37,1),(79,'5af831b64c454436a71382f13e5243a6',39,1),(80,'ea5cae46f8f441b3a0d96b57adc028b6',40,1),(81,'5d414507f7794c57a47e2ae28a782d9f',36,1),(82,'36dc5bdb7823455baf1a57352af16772',25,1),(83,'bfdf74f5cf0e475e94bc14669aa93626',25,1),(84,'daef28886cdf48f8a1982ffee6b75c63',25,1),(85,'4c03fc07f82641308070ac70b27ab3bc',41,1),(86,'21ab63c6e2a141f7a288f3fdbf28a931',44,1),(87,'a7496b432aec415095446c3015be62cb',42,1),(88,'8f9bb76e333d4cfa8dde5322bde11523',25,1),(89,'7528c4afed6d4b838af02a941798ea37',25,1);
+INSERT INTO `logged_in` VALUES (55,'cd0c816377cb4862b49f49c2ec39949d',25,1),(56,'df6a192be59948bb9c3ca6d47bcdacb6',25,1),(57,'0c922242d6c34a158baf15ef39ecc4e6',25,1),(58,'997a67e3d75446f7af711f4f2344ed2d',25,1),(59,'2c04c7ed07b047e6b2faa8305cc48d5d',32,1),(60,'9810165689fe4b718ba2e9bfbe52498a',33,1),(61,'279d07a5536241568fff6bfaf0779674',34,1),(62,'d3951f02b824448aa43d1160ae88c28c',25,1),(63,'6bb4b7ea07af43f29bb5dcf9da38ec95',25,1),(64,'ee475d335ca346d6ad190ba9b95a9a8c',25,1),(65,'f86db738da474f1f8c31bce624d172c5',35,1),(66,'ad86636906a249f7ad183e55d7035c5a',25,1),(67,'9ad105e2780b4a90a0fe373f44ffcd81',25,1),(68,'96be63fb95f1498cad1884d5fd61cd15',25,1),(69,'bebbec8351744c6c9650c160bd37c649',25,1),(70,'0',36,1),(71,'1c98515a70f0420baad25795f6098f3e',36,1),(72,'86240955af4540caa71679fab33999c6',25,1),(73,'df49e3c849714602b64ee9f297c09af5',25,1),(74,'a984cf2f31414419867343abb997b7e2',37,1),(75,'b3936c7cd67e4606b55640c02463af78',36,1),(76,'a75403ce4ecd4870993d1cd9f310ab05',38,1),(77,'5e900685aaaa4a189772b2b20ae12939',36,1),(78,'751be5df5e1440008e6f3f24a89dc2b3',37,1),(79,'5af831b64c454436a71382f13e5243a6',39,1),(80,'ea5cae46f8f441b3a0d96b57adc028b6',40,1),(81,'5d414507f7794c57a47e2ae28a782d9f',36,1),(82,'36dc5bdb7823455baf1a57352af16772',25,1),(83,'bfdf74f5cf0e475e94bc14669aa93626',25,1),(84,'daef28886cdf48f8a1982ffee6b75c63',25,1),(85,'4c03fc07f82641308070ac70b27ab3bc',41,1),(86,'21ab63c6e2a141f7a288f3fdbf28a931',44,1),(87,'a7496b432aec415095446c3015be62cb',42,1),(88,'8f9bb76e333d4cfa8dde5322bde11523',25,1),(89,'7528c4afed6d4b838af02a941798ea37',25,1),(90,'1c856cadf16f40df96b8fe041531cc99',25,1);
 /*!40000 ALTER TABLE `logged_in` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,7 +264,7 @@ CREATE TABLE `status` (
 
 LOCK TABLES `status` WRITE;
 /*!40000 ALTER TABLE `status` DISABLE KEYS */;
-INSERT INTO `status` VALUES (1,5,'This is the very first status',1,21,'2018-05-02 10:54:23','[0,4]','[3]','[3]'),(2,5,'This is the very first status',1,21,'2013-02-10 00:00:00','[0,4]','[3]','[3]'),(3,25,'ay',0,0,'2018-04-29 23:00:00','','',''),(4,25,'say something',0,0,'2018-04-29 23:00:00','','',''),(5,25,'say somethingdsa',0,0,'2018-04-29 23:00:00','','',''),(6,25,'say somethingdsa',0,0,'2018-04-29 23:00:00','','',''),(7,25,'sup',0,0,'2018-04-29 23:00:00','','',''),(8,25,'sa',0,0,'2018-04-29 23:00:00','','',''),(9,25,'This is my first real status.',0,0,'2018-04-29 23:00:00','','',''),(10,25,'\"\"\"',0,0,'2018-04-29 23:00:00','','',''),(11,32,'sum up mang',1,1,'2018-05-02 10:54:23',NULL,NULL,NULL),(12,32,'sum up manwq',1,1,'2018-05-02 10:54:23',NULL,NULL,NULL),(13,32,'sum up masswq',1,1,'2018-05-02 10:54:23',NULL,NULL,NULL),(14,25,'some mad shit',0,0,'2018-04-29 23:00:00','','',''),(15,25,'sup',0,0,'2018-04-29 23:00:00','','',''),(16,25,'sa',0,0,'2018-04-29 23:00:00','','',''),(17,25,'this is my message',0,0,'2018-04-29 23:00:00','','',''),(18,25,'a',0,0,'2018-04-29 23:00:00','','',''),(19,25,'<script>alert(hello)</script>',0,0,'2018-04-29 23:00:00','','',''),(20,25,'',0,0,'2018-04-30 23:00:00','','',''),(21,25,'Somethin happenin',0,0,'2018-04-30 23:00:00','','',''),(22,25,'some mad shit',0,0,'2018-05-01 16:26:19','','',''),(23,25,'another one',0,0,'2018-05-02 08:47:35','','',''),(24,25,'another one',0,0,'2018-05-02 08:48:06','','',''),(25,25,'booiiiiii',0,0,'2018-05-02 13:35:51','','',''),(26,32,'okay',0,0,'2018-05-02 14:04:43','','',''),(27,32,'somethings wrong',0,0,'2018-05-02 14:04:53','','',''),(28,33,'my first thing',0,0,'2018-05-02 15:22:27','','',''),(29,33,'my second thing',0,0,'2018-05-02 15:23:10','','',''),(30,34,'wassup',0,0,'2018-05-02 15:47:01','','',''),(31,34,'no',0,0,'2018-05-02 15:47:41','','',''),(32,34,'sa',0,0,'2018-05-03 09:02:33','','',''),(33,34,'ay yo',0,0,'2018-05-03 13:53:55','','',''),(34,25,'SA',0,0,'2018-05-04 10:41:50','','',''),(35,25,'some gay shit',0,0,'2018-05-04 10:48:24','','',''),(36,25,'sa',0,0,'2018-05-04 10:56:37','','',''),(37,25,'',0,0,'2018-05-04 10:59:36','','',''),(38,25,'',0,0,'2018-05-04 14:04:01','','',''),(39,25,'AIN\' RIGHT',0,0,'2018-05-09 09:35:28','','',''),(40,NULL,NULL,NULL,NULL,'2018-05-09 15:15:10',NULL,NULL,NULL),(41,25,'what now',0,0,'2018-05-09 15:21:51','','',''),(49,25,'hmmmmmmmmmmmm',0,0,'2018-05-11 15:25:07','','',''),(50,25,'something',0,0,'2018-05-11 15:28:17','','',''),(51,37,'Show me the money.',0,0,'2018-05-14 10:53:16','','',''),(52,36,'I ain\'t got no money.',0,0,'2018-05-14 10:53:39','','',''),(53,38,'Some sound lads here',0,0,'2018-05-14 10:54:37','','',''),(54,37,'Anyone around for a meet up?',0,0,'2018-05-14 10:55:43','','',''),(55,38,'Terrible weather today...',0,0,'2018-05-14 10:56:06','','',''),(56,37,'I am Narl, leader of the Jarsons.',0,0,'2018-05-14 10:56:23','','',''),(57,39,'Somewhere over the rainbow',0,0,'2018-05-14 11:28:46','','',''),(58,39,'I was something like 743 lbs',0,0,'2018-05-14 11:29:02','','',''),(59,40,'Ain\'t nobody loves me better',0,0,'2018-05-14 11:30:08','','',''),(60,36,'suh',0,0,'2018-05-15 10:31:33','','',''),(61,41,'I thought I made a status?',0,0,'2018-05-17 09:05:32','','',''),(62,44,'Awah wah',0,0,'2018-05-17 10:01:43','','',''),(63,44,'me lookie',0,0,'2018-05-17 10:01:48','','',''),(64,44,'some shit',0,0,'2018-05-17 10:01:54','','',''),(65,42,'crazy y\'al',0,0,'2018-05-17 10:02:28','','','');
+INSERT INTO `status` VALUES (1,5,'This is the very first status',1,21,'2018-05-02 10:54:23','[0,4]','[3]','[3]'),(2,5,'This is the very first status',1,21,'2013-02-10 00:00:00','[0,4]','[3]','[3]'),(3,25,'ay',0,0,'2018-04-29 23:00:00','','',''),(4,25,'say something',0,0,'2018-04-29 23:00:00','','',''),(5,25,'say somethingdsa',0,0,'2018-04-29 23:00:00','','',''),(6,25,'say somethingdsa',0,0,'2018-04-29 23:00:00','','',''),(7,25,'sup',0,0,'2018-04-29 23:00:00','','',''),(8,25,'sa',0,0,'2018-04-29 23:00:00','','',''),(9,25,'This is my first real status.',0,0,'2018-04-29 23:00:00','','',''),(10,25,'\"\"\"',0,0,'2018-04-29 23:00:00','','',''),(11,32,'sum up mang',1,1,'2018-05-02 10:54:23',NULL,NULL,NULL),(12,32,'sum up manwq',1,1,'2018-05-02 10:54:23',NULL,NULL,NULL),(13,32,'sum up masswq',1,1,'2018-05-02 10:54:23',NULL,NULL,NULL),(14,25,'some mad shit',0,0,'2018-04-29 23:00:00','','',''),(15,25,'sup',0,0,'2018-04-29 23:00:00','','',''),(16,25,'sa',0,0,'2018-04-29 23:00:00','','',''),(17,25,'this is my message',0,0,'2018-04-29 23:00:00','','',''),(18,25,'a',0,0,'2018-04-29 23:00:00','','',''),(19,25,'<script>alert(hello)</script>',0,0,'2018-04-29 23:00:00','','',''),(20,25,'',0,0,'2018-04-30 23:00:00','','',''),(21,25,'Somethin happenin',0,0,'2018-04-30 23:00:00','','',''),(22,25,'some mad shit',0,0,'2018-05-01 16:26:19','','',''),(23,25,'another one',0,0,'2018-05-02 08:47:35','','',''),(24,25,'another one',0,0,'2018-05-02 08:48:06','','',''),(25,25,'booiiiiii',0,0,'2018-05-02 13:35:51','','',''),(26,32,'okay',0,0,'2018-05-02 14:04:43','','',''),(27,32,'somethings wrong',0,0,'2018-05-02 14:04:53','','',''),(28,33,'my first thing',0,0,'2018-05-02 15:22:27','','',''),(29,33,'my second thing',0,0,'2018-05-02 15:23:10','','',''),(30,34,'wassup',0,0,'2018-05-02 15:47:01','','',''),(31,34,'no',0,0,'2018-05-02 15:47:41','','',''),(32,34,'sa',0,-1,'2018-05-18 08:45:02','','',''),(33,34,'ay yo',0,0,'2018-05-03 13:53:55','','',''),(34,25,'SA',0,0,'2018-05-04 10:41:50','','',''),(35,25,'some gay shit',0,0,'2018-05-04 10:48:24','','',''),(36,25,'sa',0,0,'2018-05-04 10:56:37','','',''),(37,25,'',0,0,'2018-05-04 10:59:36','','',''),(38,25,'',0,0,'2018-05-04 14:04:01','','',''),(39,25,'AIN\' RIGHT',0,0,'2018-05-09 09:35:28','','',''),(40,NULL,NULL,NULL,NULL,'2018-05-09 15:15:10',NULL,NULL,NULL),(41,25,'what now',0,0,'2018-05-09 15:21:51','','',''),(49,25,'hmmmmmmmmmmmm',0,0,'2018-05-11 15:25:07','','',''),(50,25,'something',0,0,'2018-05-11 15:28:17','','',''),(51,37,'Show me the money.',0,0,'2018-05-14 10:53:16','','',''),(52,36,'I ain\'t got no money.',0,0,'2018-05-14 10:53:39','','',''),(53,38,'Some sound lads here',0,0,'2018-05-14 10:54:37','','',''),(54,37,'Anyone around for a meet up?',0,0,'2018-05-14 10:55:43','','',''),(55,38,'Terrible weather today...',0,0,'2018-05-14 10:56:06','','',''),(56,37,'I am Narl, leader of the Jarsons.',0,0,'2018-05-14 10:56:23','','',''),(57,39,'Somewhere over the rainbow',0,0,'2018-05-14 11:28:46','','',''),(58,39,'I was something like 743 lbs',0,0,'2018-05-14 11:29:02','','',''),(59,40,'Ain\'t nobody loves me better',0,0,'2018-05-14 11:30:08','','',''),(60,36,'suh',0,0,'2018-05-15 10:31:33','','',''),(61,41,'I thought I made a status?',0,0,'2018-05-17 09:05:32','','',''),(62,44,'Awah wah',0,0,'2018-05-17 10:01:43','','',''),(63,44,'me lookie',0,0,'2018-05-17 10:01:48','','',''),(64,44,'some shit',0,0,'2018-05-17 10:01:54','','',''),(65,42,'crazy y\'al',0,1,'2018-05-18 11:42:37','','','');
 /*!40000 ALTER TABLE `status` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -272,6 +298,33 @@ LOCK TABLES `status_comment` WRITE;
 /*!40000 ALTER TABLE `status_comment` DISABLE KEYS */;
 INSERT INTO `status_comment` VALUES (1,1,5,'This is the very first comment',21,'2013-02-10 00:00:00'),(2,65,42,'',0,'2018-05-17 15:05:21'),(3,65,42,'',0,'2018-05-17 15:06:28'),(4,65,42,'',0,'2018-05-17 15:06:28'),(5,65,42,'',0,'2018-05-17 15:06:53'),(6,65,42,'',0,'2018-05-17 15:06:53'),(7,65,42,'ay yal',0,'2018-05-17 15:06:53'),(8,65,42,'',0,'2018-05-17 15:08:30'),(9,65,42,'ay whats good homie',0,'2018-05-17 15:08:30'),(10,65,42,'',0,'2018-05-17 15:08:30'),(11,65,42,'',0,'2018-05-17 15:08:56'),(12,65,42,'',0,'2018-05-17 15:08:56'),(13,65,42,'no',0,'2018-05-17 15:08:56'),(14,65,42,'',0,'2018-05-17 15:09:07'),(15,65,42,'',0,'2018-05-17 15:09:07'),(16,65,42,'ay',0,'2018-05-17 15:09:07'),(17,65,42,'sa',0,'2018-05-17 15:29:50');
 /*!40000 ALTER TABLE `status_comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `status_likes`
+--
+
+DROP TABLE IF EXISTS `status_likes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `status_likes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(20) NOT NULL,
+  `status_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `status_likes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `status_likes`
+--
+
+LOCK TABLES `status_likes` WRITE;
+/*!40000 ALTER TABLE `status_likes` DISABLE KEYS */;
+INSERT INTO `status_likes` VALUES (9,42,65);
+/*!40000 ALTER TABLE `status_likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -376,4 +429,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-05-17 18:10:35
+-- Dump completed on 2018-05-18 15:47:23

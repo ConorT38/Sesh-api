@@ -91,4 +91,13 @@ public class StatusController {
         statusService.deleteStatus(id);
         return true;
     }
+
+    @PostMapping("/check/liked/status")
+    @ResponseBody
+    public boolean checkLikedStatus(@RequestBody String status_data) {
+        int id = Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString());
+        int comment_id = Integer.parseInt(new JSONObject(status_data).getJSONArray("status_id").get(0).toString());
+
+        return  statusService.checkLikedStatus(id,comment_id);
+    }
 }
