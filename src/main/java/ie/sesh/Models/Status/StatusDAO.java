@@ -13,4 +13,6 @@ public interface StatusDAO {
     void updateStatus(Status status);
     void deleteStatus(int id);
     boolean checkLikedStatus(int id, int status_id);
+    void likeStatus(int id, int status_id);
+    void unlikeStatus(int id, int status_id);
 }

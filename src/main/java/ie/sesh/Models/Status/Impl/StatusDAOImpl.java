@@ -152,13 +152,48 @@ public class StatusDAOImpl implements StatusDAO{
     }
 
     public boolean checkLikedStatus(int id, int status_id) {
-        log.info("Checking if user:"+id+" likes comment: "+status_id);
+        log.info("Checking if user:"+id+" likes status: "+status_id);
         int check = jdbcTemplate.queryForObject(CHECK_LIKED_STATUS, new Object[]{id,status_id}, Integer.class);
 
         if(check ==1){
             return true;
         }
         return false;
+    }
+
+    public void likeStatus(int id, int status_id) {
+        log.info("User: "+id+" likes status: "+status_id);
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(LIKE_STATUS, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ps.setInt(2, status_id);
+            return ps;
+        }, holder);
+
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(LIKE_STATUS_INCREMENT, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, status_id);
+            return ps;
+        }, holder);
+    }
+
+    public void unlikeStatus(int id, int status_id) {
+        log.info("Checking if user:"+id+" likes comment: "+status_id);
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(UNLIKE_STATUS, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, id);
+            ps.setInt(2, status_id);
+            return ps;
+        }, holder);
+
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(UNLIKE_STATUS_DECREMENT, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, status_id);
+            return ps;
+        }, holder);
+
     }
 }
 

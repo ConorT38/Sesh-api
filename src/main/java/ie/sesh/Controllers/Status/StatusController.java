@@ -96,8 +96,36 @@ public class StatusController {
     @ResponseBody
     public boolean checkLikedStatus(@RequestBody String status_data) {
         int id = Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString());
-        int comment_id = Integer.parseInt(new JSONObject(status_data).getJSONArray("status_id").get(0).toString());
+        int status_id = Integer.parseInt(new JSONObject(status_data).getJSONArray("status_id").get(0).toString());
 
-        return  statusService.checkLikedStatus(id,comment_id);
+        return  statusService.checkLikedStatus(id,status_id);
+    }
+
+    @PostMapping("/like/status")
+    @ResponseBody
+    public boolean likeStatus(@RequestBody String status_data){
+        try {
+            int id = Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString());
+            int status_id = Integer.parseInt(new JSONObject(status_data).getJSONArray("status_id").get(0).toString());
+            statusService.likeStatus(id,status_id);
+            return true;
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return false;
+        }
+    }
+
+    @PostMapping("/unlike/status")
+    @ResponseBody
+    public boolean unlikeStatus(@RequestBody String status_data){
+        try {
+            int id = Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString());
+            int status_id = Integer.parseInt(new JSONObject(status_data).getJSONArray("status_id").get(0).toString());
+            statusService.unlikeStatus(id,status_id);
+            return true;
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return false;
+        }
     }
 }

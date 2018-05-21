@@ -51,4 +51,12 @@ public class StatusService {
     public boolean checkLikedStatus(int id, int status_id){
         return statusDAO.checkLikedStatus(id, status_id);
     }
+
+    public void likeStatus(int id, int status_id){
+        statusDAO.likeStatus(id, status_id);
+    }
+
+    public void unlikeStatus(int id, int status_id){
+        statusDAO.unlikeStatus(id, status_id);
+    }
 }
