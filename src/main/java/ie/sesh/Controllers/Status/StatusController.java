@@ -34,32 +34,20 @@ public class StatusController {
     @PostMapping("/get/all/status")
     @ResponseBody
     public List<Status> getAllStatus(@RequestBody String user_data) {
-        int id = Integer.parseInt(new JSONObject(user_data).getJSONArray("id").get(0).toString());
-        List<Status> statuses= statusService.getAllStatus(id);
-        for(int i=0; i<statuses.size(); i++) {
-            log.info("STATUSES: " + statuses.get(i).getMessage());
-        }
+        int id = CommonUtils.parseIntFromJSON(user_data,"id");
         return statusService.getAllStatus(id);
     }
 
     @PostMapping("/get/all/user/status")
     @ResponseBody
     public List<Status> getAllUserStatus(@RequestBody String user_data) {
-        int id = Integer.parseInt(new JSONObject(user_data).getJSONArray("id").get(0).toString());
-        List<Status> statuses= statusService.getAllUserStatus(id);
-        for(int i=0; i<statuses.size(); i++) {
-            log.info("STATUSES: " + statuses.get(i).getMessage());
-        }
+        int id = CommonUtils.parseIntFromJSON(user_data,"id");
         return statusService.getAllUserStatus(id);
     }
 
     @PostMapping("/get/all/user/status/@{username}")
     @ResponseBody
     public List<Status> getAllUserProfileStatus(@PathVariable("username") String username) {
-        List<Status> statuses= statusService.getAllUserProfileStatus(username);
-        for(int i=0; i<statuses.size(); i++) {
-            log.info("STATUSES: " + statuses.get(i).getMessage());
-        }
         return statusService.getAllUserProfileStatus(username);
     }
 
@@ -95,8 +83,8 @@ public class StatusController {
     @PostMapping("/check/liked/status")
     @ResponseBody
     public boolean checkLikedStatus(@RequestBody String status_data) {
-        int id = Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString());
-        int status_id = Integer.parseInt(new JSONObject(status_data).getJSONArray("status_id").get(0).toString());
+        int id = CommonUtils.parseIntFromJSON(status_data,"id");
+        int status_id = CommonUtils.parseIntFromJSON(status_data,"status_id");
 
         return  statusService.checkLikedStatus(id,status_id);
     }
@@ -105,8 +93,8 @@ public class StatusController {
     @ResponseBody
     public boolean likeStatus(@RequestBody String status_data){
         try {
-            int id = Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString());
-            int status_id = Integer.parseInt(new JSONObject(status_data).getJSONArray("status_id").get(0).toString());
+            int id = CommonUtils.parseIntFromJSON(status_data,"id");
+            int status_id = CommonUtils.parseIntFromJSON(status_data,"status_id");
             statusService.likeStatus(id,status_id);
             return true;
         }catch (Exception e){
@@ -119,8 +107,8 @@ public class StatusController {
     @ResponseBody
     public boolean unlikeStatus(@RequestBody String status_data){
         try {
-            int id = Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString());
-            int status_id = Integer.parseInt(new JSONObject(status_data).getJSONArray("status_id").get(0).toString());
+            int id = CommonUtils.parseIntFromJSON(status_data,"id");
+            int status_id = CommonUtils.parseIntFromJSON(status_data,"status_id");
             statusService.unlikeStatus(id,status_id);
             return true;
         }catch (Exception e){

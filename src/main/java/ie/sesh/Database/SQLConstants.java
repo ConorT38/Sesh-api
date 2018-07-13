@@ -58,4 +58,7 @@ public class SQLConstants {
     public static final String GET_ONLINE_USERS = "SELECT * FROM users WHERE id IN (SELECT friend_id FROM user_relationship WHERE user_id = ? AND friend_id != ?) LIMIT 5";
 
     public static final String FOLLOW_USER = "INSERT INTO user_relationship(user_id,friend_id,type) VALUES(?,?,'friend')";
+
+    public static final String GET_ALL_NOTIFICATIONS_BY_ID = "SELECT * FROM notifications WHERE user_id = ?";
+    public static final String GET_NOTIFICATION_BY_ID = "SELECT * FROM notifications WHERE id = ?";
 }
