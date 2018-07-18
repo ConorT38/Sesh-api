@@ -1,7 +1,10 @@
 package ie.sesh.Models.Notifications;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
+@Repository
 public interface NotificationDAO {
 
     Notification getNotification(int user_id);

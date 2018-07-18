@@ -7,20 +7,21 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Component;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Timestamp;
+import java.sql.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static ie.sesh.Database.SQLConstants.GET_ALL_NOTIFICATIONS_BY_ID;
-import static ie.sesh.Database.SQLConstants.GET_NOTIFICATION_BY_ID;
+import static ie.sesh.Database.SQLConstants.*;
 import static ie.sesh.Utils.NotificationUtils.splitStringToIntArr;
 import static java.lang.Math.toIntExact;
 
+@Component
 public class NotificationDAOImpl implements NotificationDAO {
 
     private static final Logger log = Logger.getLogger(NotificationDAOImpl.class);
@@ -56,7 +57,20 @@ public class NotificationDAOImpl implements NotificationDAO {
     }
 
     public boolean createNotification(Notification notification) {
-        return false;
+        log.info("Creating notification");
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(CREATE_NOTIFICATION, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, notification.getUser_id());
+            ps.setObject(2, notification.getSource_users());
+            ps.setString(3, notification.getNotification_type());
+            ps.setString(4, notification.getNotification_data());
+            ps.setBoolean(5, notification.isHide_notification());
+            ps.setBoolean(6, notification.isRead_notification());
+            ps.setTimestamp(7, notification.getDate());
+            return ps;
+        }, holder);
+        return true;
     }
 
     public boolean hideNotification(int notification_id) {
