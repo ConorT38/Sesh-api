@@ -13,5 +13,7 @@ public interface NotificationDAO {
     boolean createNotification(Notification notification);
     boolean hideNotification(int notification_id);
     boolean readNotification(int notification_id);
+    boolean unhideNotification(int notification_id);
+    boolean unreadNotification(int notification_id);
 
 }

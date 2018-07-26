@@ -74,11 +74,51 @@ public class NotificationDAOImpl implements NotificationDAO {
     }
 
     public boolean hideNotification(int notification_id) {
-        return false;
+        log.info("Hiding notification");
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(HIDE_NOTIFICATION, Statement.RETURN_GENERATED_KEYS);
+            ps.setBoolean(1, true);
+            ps.setInt(2, notification_id);
+            return ps;
+        }, holder);
+        return true;
+    }
+
+    public boolean unhideNotification(int notification_id) {
+        log.info("Hiding notification");
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(HIDE_NOTIFICATION, Statement.RETURN_GENERATED_KEYS);
+            ps.setBoolean(1, false);
+            ps.setInt(2, notification_id);
+            return ps;
+        }, holder);
+        return true;
     }
 
     public boolean readNotification(int notification_id) {
-        return false;
+        log.info("Reading notification");
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(READ_NOTIFICATION, Statement.RETURN_GENERATED_KEYS);
+            ps.setBoolean(1, true);
+            ps.setInt(2, notification_id);
+            return ps;
+        }, holder);
+        return true;
+    }
+
+    public boolean unreadNotification(int notification_id) {
+        log.info("Reading notification");
+        KeyHolder holder = new GeneratedKeyHolder();
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(READ_NOTIFICATION, Statement.RETURN_GENERATED_KEYS);
+            ps.setBoolean(1, false);
+            ps.setInt(2, notification_id);
+            return ps;
+        }, holder);
+        return true;
     }
 
 }

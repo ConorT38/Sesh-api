@@ -62,4 +62,6 @@ public class SQLConstants {
     public static final String GET_ALL_NOTIFICATIONS_BY_ID = "SELECT * FROM notifications WHERE user_id = ?";
     public static final String GET_NOTIFICATION_BY_ID = "SELECT * FROM notifications WHERE id = ?";
     public static final String CREATE_NOTIFICATION = "INSERT INTO notifications (user_id, source_users, type, data, hidden, seen, uploaded) VALUES(?,?,?,?,?,?, NOW());";
+    public static final String HIDE_NOTIFICATION = "UPDATE notifications SET hidden = ? WHERE id = ?;";
+    public static final String READ_NOTIFICATION = "UPDATE notifications SET read = ? WHERE id = ?;";
 }
