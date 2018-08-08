@@ -90,7 +90,6 @@ public class CommentDAOImpl implements CommentDAO{
     }
 
     public boolean checkLikedComment(int id, int comment_id) {
-        log.info("Checking if user:"+id+" likes comment: "+comment_id);
         int check = jdbcTemplate.queryForObject(CHECK_LIKED_COMMENT, new Object[]{id,comment_id}, Integer.class);
 
         if(check ==1){

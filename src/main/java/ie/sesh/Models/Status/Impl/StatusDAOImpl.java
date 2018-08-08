@@ -48,7 +48,6 @@ public class StatusDAOImpl implements StatusDAO{
             s.setLocation((int) status.get("location"));
             s.setLikes((int)status.get("likes"));
             s.setLiked(checkLikedStatus(((Long)(status.get("user_id"))).intValue(),((Long)(status.get("id"))).intValue()));
-            log.info("UPLOADED: "+status.get("uploaded"));
             s.setDate((Timestamp) status.get("uploaded"));
             s.setGoing((String)status.get("going"));
             s.setMaybe((String)status.get("maybe"));
@@ -152,7 +151,6 @@ public class StatusDAOImpl implements StatusDAO{
     }
 
     public boolean checkLikedStatus(int id, int status_id) {
-        log.info("Checking if user:"+id+" likes status: "+status_id);
         int check = jdbcTemplate.queryForObject(CHECK_LIKED_STATUS, new Object[]{id,status_id}, Integer.class);
 
         if(check ==1){
@@ -179,7 +177,6 @@ public class StatusDAOImpl implements StatusDAO{
     }
 
     public void unlikeStatus(int id, int status_id) {
-        log.info("Checking if user:"+id+" likes comment: "+status_id);
         KeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(connection -> {
             PreparedStatement ps = connection.prepareStatement(UNLIKE_STATUS, Statement.RETURN_GENERATED_KEYS);

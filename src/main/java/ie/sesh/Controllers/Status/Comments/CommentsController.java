@@ -36,9 +36,6 @@ public class CommentsController {
     public List<Comment> getAllStatusComments(@PathVariable("id") String id) {
 
         List<Comment> comments = commentService.getAllStatusComments(Integer.parseInt(id));
-        for(int i=0; i<comments.size(); i++) {
-            log.info("STATUSES: " + comments.get(i).getMessage());
-        }
         return commentService.getAllStatusComments(Integer.parseInt(id));
     }
 

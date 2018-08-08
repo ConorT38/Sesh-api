@@ -20,14 +20,14 @@ public class SQLConstants {
     public static final String DELETE_STATUS = "DELETE FROM status WHERE id=?";
     public static final String CHECK_LIKED_STATUS = "SELECT EXISTS(SELECT 1 FROM status_likes where user_id =? and status_id = ?);";
     public static final String LIKE_STATUS = "INSERT INTO status_likes(user_id, status_id) VALUES(?,?)";
-    public static final String UNLIKE_STATUS = "DELETE FROM status WHERE user_id=? AND status_id=?";
+    public static final String UNLIKE_STATUS = "DELETE FROM status_likes WHERE user_id=? AND status_id=?";
     public static final String LIKE_STATUS_INCREMENT = "CALL likeStatus(?)";
     public static final String UNLIKE_STATUS_DECREMENT = "CALL unlikeStatus(?)";
 
     public static final String INSERT_STATUS_COMMENT = "INSERT INTO comments (user_id, status_id, message, likes, uploaded) VALUES(?,?,?,?, NOW());";
     public static final String UPDATE_STATUS_COMMENT = "UPDATE comments SET status_id,user_id=?,message=?,likes=?,uploaded=? WHERE id=?";
     public static final String GET_STATUS_COMMENT_BY_ID = "SELECT * FROM comments WHERE id = ?";
-    public static final String GET_ALL_STATUS_COMMENTS_BY_ID = "SELECT * FROM comments INNER JOIN users ON comments.user_id=users.id WHERE status_id = ?";
+    public static final String GET_ALL_STATUS_COMMENTS_BY_ID = "SELECT * FROM comments INNER JOIN users ON comments.user_id=users.id WHERE comments.status_id = ?";
     public static final String DELETE_STATUS_COMMENT = "DELETE FROM comments WHERE id=?";
     public static final String CHECK_LIKED_COMMENT = "SELECT EXISTS(SELECT 1 FROM comments_likes where user_id =? and comment_id = ?);";
 

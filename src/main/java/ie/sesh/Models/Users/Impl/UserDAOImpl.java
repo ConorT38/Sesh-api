@@ -33,7 +33,6 @@ public class UserDAOImpl implements UserDAO{
     CommonUtils commonUtils;
 
     public User getUser(int id) {
-        log.info("Getting user");
         return (User)jdbcTemplate.queryForObject(GET_USER_BY_ID, new Object[] {id}, new UserMapper());
     }
 
