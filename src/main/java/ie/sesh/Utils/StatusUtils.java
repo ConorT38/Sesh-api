@@ -10,24 +10,29 @@ import java.sql.Timestamp;
 public class StatusUtils {
 
     public Status buildStatus(String status_data){
-        int id = (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("id").get(0).toString()),0);
-        int user_id =  (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("user_id").get(0).toString()),0);
-        String name = "";
-        String username = "";
-        String message = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("message").get(0).toString(),"");
-        int location = (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("location").get(0).toString()),0);
-        int likes = (int) checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray("likes").get(0).toString()),0);
-        boolean liked = false;
+        int id = (int) getItem(status_data,"id", 0);
+        int user_id =  (int) getItem(status_data,"user_id", 0);
+        String message = (String) getItem(status_data,"message", "");
+        int location = (int) getItem(status_data,"location", 0);
+        int likes = (int) getItem(status_data,"likes", 0);
         Timestamp date = new Timestamp(new java.util.Date().getTime());
-        String going = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("going").get(0).toString(),"");
-        String maybe = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("maybe").get(0).toString(),"");
-        String not_going = (String) checkIsNullEmpty(new JSONObject(status_data).getJSONArray("not_going").get(0).toString(),"");
+        String going = (String) getItem(status_data,"going", "");
+        String maybe = (String) getItem(status_data,"maybe", "");
+        String not_going = (String) getItem(status_data,"not_going", "");
 
-        return new Status(id,user_id,name,username,message,location,likes,liked,date,going,maybe,not_going);
+        return new Status(id,user_id,"","","",message,location,likes,false,date,going,maybe,not_going);
     }
 
 
-    public Object checkIsNullEmpty(Object value, Object def){
+    private Object checkIsNullEmpty(Object value, Object def){
         return (!value.toString().isEmpty() || value.toString() !=null) ? value : def;
+    }
+
+    private Object getItem(String status_data, String item, Object def){
+        if(def instanceof String) {
+            return checkIsNullEmpty(new JSONObject(status_data).getJSONArray(item).get(0).toString(), def);
+        }else{
+            return checkIsNullEmpty(Integer.parseInt(new JSONObject(status_data).getJSONArray(item).get(0).toString()), def);
+        }
     }
 }

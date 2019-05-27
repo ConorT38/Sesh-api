@@ -44,6 +44,7 @@ public class StatusDAOImpl implements StatusDAO{
             s.setUser_id(toIntExact((Long)(status.get("user_id"))));
             s.setName((String) status.get("name"));
             s.setUsername((String) status.get("username"));
+            s.setProfile_pic((String) status.get("profile_pic"));
             s.setMessage((String) status.get("message"));
             s.setLocation((int) status.get("location"));
             s.setLikes((int)status.get("likes"));
@@ -68,6 +69,7 @@ public class StatusDAOImpl implements StatusDAO{
             s.setUser_id(toIntExact((Long)(status.get("user_id"))));
             s.setName((String) status.get("name"));
             s.setUsername((String) status.get("username"));
+            s.setProfile_pic((String) status.get("profile_pic"));
             s.setMessage((String) status.get("message"));
             s.setLocation((int) status.get("location"));
             s.setLikes((int)status.get("likes"));
@@ -92,6 +94,7 @@ public class StatusDAOImpl implements StatusDAO{
             s.setUser_id(toIntExact((Long)(status.get("user_id"))));
             s.setName((String) status.get("name"));
             s.setUsername((String) status.get("username"));
+            s.setProfile_pic((String) status.get("profile_pic"));
             s.setMessage((String) status.get("message"));
             s.setLocation((int) status.get("location"));
             s.setLikes((int)status.get("likes"));

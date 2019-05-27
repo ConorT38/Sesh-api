@@ -48,6 +48,7 @@ public class UserDAOImpl implements UserDAO{
             ps.setString(5, user.getFavourite_drink());
             ps.setDouble(6, user.getRating());
             ps.setInt(7,user.getId());
+            ps.setString(8,user.getProfile_pic());
             return ps;
         }, holder);
     }
@@ -63,6 +64,7 @@ public class UserDAOImpl implements UserDAO{
             ps.setInt(4, user.getLocation());
             ps.setString(5, user.getFavourite_drink());
             ps.setDouble(6, user.getRating());
+            ps.setString(7,user.getProfile_pic());
             return ps;
         }, holder);
     }
@@ -100,6 +102,7 @@ public class UserDAOImpl implements UserDAO{
             u.setLocal_spot((int) commonUtils.checkIsNullEmpty(user.get("local_spot"),0));
             u.setUsername((String) commonUtils.checkIsNullEmpty(user.get("username"),""));
             u.setEmail((String) commonUtils.checkIsNullEmpty(user.get("email"),""));
+            u.setProfile_pic((String) commonUtils.checkIsNullEmpty(user.get("profile_pic"),"")); // Set profile pic default
             users.add(u);
         }
         return users;
@@ -129,6 +132,7 @@ public class UserDAOImpl implements UserDAO{
             u.setLocation((int) commonUtils.checkIsNullEmpty(user.get("location"),0));
             u.setRating(((float) commonUtils.checkIsNullEmpty(user.get("rating"),0.0f)));
             u.setUsername((String) commonUtils.checkIsNullEmpty(user.get("username"),""));
+            u.setProfile_pic((String) commonUtils.checkIsNullEmpty(user.get("profile_pic"),"")); // Set profile pic default
             users.add(u);
         }
         return users;
@@ -153,6 +157,7 @@ class UserMapper implements RowMapper {
         user.setFavourite_drink(rs.getString("favourite_drink"));
         user.setLocation(rs.getInt("location"));
         user.setRating(rs.getFloat("rating"));
+        user.setProfile_pic(rs.getString("profile_pic"));
         return user;
     }
 }

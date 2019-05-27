@@ -33,7 +33,7 @@ public class RegisterController {
 
         log.info("Submitted data: "+user_data);
 
-        if(env.getProperty("enable.encryption")) {
+        if(env.getProperty("enable.encryption").equals("true")) {
 
              username = Authentication.encrypt(obj.getJSONArray("username").get(0).toString());
              password = Authentication.hashPassword(obj.getJSONArray("password").get(0).toString());

@@ -2,8 +2,8 @@ package ie.sesh.Database;
 
 public class SQLConstants {
 
-    public static final String INSERT_USER = " INSERT INTO users(name,age,dob,location,favourite_drink,rating) values(?,?,?,?,?,?);";
-    public static final String UPDATE_USER = "UPDATE users SET name=?,age=?,dob=?,location=?,favourite_drink=?,rating=? WHERE id=?";
+    public static final String INSERT_USER = " INSERT INTO users(name,age,dob,location,favourite_drink,rating,profile_pic) values(?,?,?,?,?,?,?);";
+    public static final String UPDATE_USER = "UPDATE users SET name=?,age=?,dob=?,location=?,favourite_drink=?,rating=?,profile_pic=? WHERE id=?";
     public static final String GET_USER_BY_ID = "SELECT * FROM users WHERE id = ?";
     public static final String GET_USER_PROFILE_BY_USERNAME = "SELECT * FROM users WHERE username = ? LIMIT 1";
     public static final String DELETE_USER = "DELETE FROM users WHERE id=?";
@@ -51,8 +51,8 @@ public class SQLConstants {
     public static final String REGISTER_USER = " INSERT INTO users(name,email,password,username) values(?,?,?,?);";
     public static final String REGISTER_USER_FEED = " INSERT INTO user_relationship(user_id, friend_id,type) SELECT id, id, 'friend' FROM users WHERE username=?";
 
-    public static final String GET_LIVE_FEED = "SELECT status.*,users.username,users.name FROM status INNER JOIN user_relationship ON status.user_id=user_relationship.friend_id INNER JOIN users ON users.id=status.user_id WHERE user_relationship.user_id=? AND user_relationship.type='friend' ORDER BY uploaded DESC";
-    public static final String GET_USER_POSTS = "SELECT status.*,users.username,users.name FROM status  INNER JOIN users ON users.id=status.user_id WHERE users.id=? ORDER BY uploaded DESC";
+    public static final String GET_LIVE_FEED = "SELECT status.*,users.username,users.profile_pic, users.name FROM status INNER JOIN user_relationship ON status.user_id=user_relationship.friend_id INNER JOIN users ON users.id=status.user_id WHERE user_relationship.user_id=? AND user_relationship.type='friend' ORDER BY uploaded DESC";
+    public static final String GET_USER_POSTS = "SELECT status.*,users.username,users.profile_pic,users.name FROM status  INNER JOIN users ON users.id=status.user_id WHERE users.id=? ORDER BY uploaded DESC";
 
     public static final String GET_RECOMMENDED_USERS = "SELECT u.* FROM users as u WHERE u.id NOT IN (SELECT friend_id FROM user_relationship WHERE user_id = ?) AND location=? LIMIT 3";
     public static final String GET_ONLINE_USERS = "SELECT * FROM users WHERE id IN (SELECT friend_id FROM user_relationship WHERE user_id = ? AND friend_id != ?) LIMIT 5";

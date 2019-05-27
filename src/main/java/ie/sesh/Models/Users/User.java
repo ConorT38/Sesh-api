@@ -21,10 +21,11 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String profile_pic;
 
     public User(){}
 
-    public User(int id, String name, int age, Date dob, int location, String favourite_drink, float rating, String gender, int local_spot, String username, String email, String password) {
+    public User(int id, String name, int age, Date dob, int location, String favourite_drink, float rating, String gender, int local_spot, String username, String email, String password, String profile_pic) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -37,9 +38,10 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.profile_pic = profile_pic;
     }
 
-    public User(int id, String name, int age, Date dob, int location, String favourite_drink, float rating, String gender, int local_spot, String username, String email) {
+    public User(int id, String name, int age, Date dob, int location, String favourite_drink, float rating, String gender, int local_spot, String username, String email, String profile_pic) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -51,6 +53,7 @@ public class User {
         this.local_spot = local_spot;
         this.username = username;
         this.email = email;
+        this.profile_pic = profile_pic;
     }
 
     public int getId() {
@@ -147,5 +150,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProfile_pic() {
+        return profile_pic;
+    }
+
+    public void setProfile_pic(String profile_pic) {
+        this.profile_pic = profile_pic;
     }
 }
